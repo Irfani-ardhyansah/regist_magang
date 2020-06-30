@@ -62,9 +62,20 @@
                 <td> : </td>
                 <td>{{$row->user->email}}</td>
               </tr>
+              <tr>
+                <th>Berkas Jawaban</th>
+                <td> : </td>
+                <td>
+                  @if($row->user->soal['item'] == true)
+                    <a href="/data_jawaban/{{$row->user->soal['item']}}">{{$row->user->soal['item']}}</a>
+                  @else
+                    <span class="badge badge-light">Belum Upload Jawaban</span>
+                  @endif
+                </td>
+              </tr>
             </tbody>
           </table>
-          <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#data_editModal-{{ $row->id }}" style="width: 200px; margin-top: 5%;margin-left: 40%;margin-bottom: 10%;">Edit</button>
+          <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#data_editModal-{{ $row->id }}" style="width: 200px; margin-top: 5%;margin-left: 52%;margin-bottom: 10%;">Edit</button>
           @endforeach
         </div>
       </div>
@@ -72,7 +83,7 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">No</th>
-            <th scope="col">Nama</th>
+            <th scope="col">Nama Anggota</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
           </tr>
@@ -82,12 +93,16 @@
           <tr>
             <th scope="row">{{$loop->iteration}}</th>
             <td>{{$rows->nama}}</td>
-            <td><span class="badge badge-secondary">Menunggu</span></td>
-            td
+            <td>
+              @if($rows->status == 0)<span class="badge badge-secondary">Menunggu</span>
+              @elseif($rows->status == 1)<span class="badge badge-success">Diterima</span>
+              @elseif($rows->status == 2)<span class="badge badge-danger">Ditolak</span>
+              @elseif($rows->status == 3)<span class="badge badge-light">Selesai</span>@endif
+            </td>
             <td>
               <form action="{{ url('/home/delete/' . $rows -> id) }}" method="POST">
-              @csrf
-              <input type="hidden" name="_method" value="DELETE" class="form-control"> 
+                @csrf
+                <input type="hidden" name="_method" value="DELETE" class="form-control"> 
                 <a href="{{url('/detail/'.$rows->id)}}" class="btn btn-primary btn-sm">Detail</a>  <span class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal-{{ $rows->id }}">Edit</span>  <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button>
               </form>
             </td>
@@ -98,7 +113,7 @@
     </div>
   </div>
 
-<!-- Modal -->
+<!-- Modal Edit Anggota-->
 @foreach($data_kelompok as $rows)
 <div class="modal fade" id="editModal-{{ $rows->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -162,7 +177,7 @@
 </div>
 @endforeach
 
-<!-- Modal -->
+<!-- Modal Edit Kelompok -->
 @foreach($data as $row)
 <div class="modal fade" id="data_editModal-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

@@ -78,7 +78,7 @@
           <tr>
               <td>Berkas Jawaban</td>
               <td>:</td>
-              <td> <a href="#">webProgramming.rar</a> </td>
+              <td> <a href="/data_jawaban/{{$row->user->soal['item']}}">{{ $row->user->soal['item'] }}</a> </td>
           </tr>
         </tbody>
       </table>

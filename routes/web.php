@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin'], function() {
     
     Route::get('/dashboard', 'DataController@index')->middleware('role:admin');
-    
+    Route::delete('/delete/{id}', 'DataController@delete_kelompok')->middleware('role:admin');
     Route::get('/detail/{id}', 'DataController@detail')->middleware('role:admin');
     Route::match(['get', 'post'], '/detail/{id}/change_status', 'DataController@change_status')->middleware('role:admin');
     Route::get('/detail_anggota/{id}', 'DataController@detail_anggota')->middleware('role:admin');
@@ -26,21 +26,20 @@ Route::group(['prefix' => 'admin'], function() {
     
     Route::get('/upload_file', 'UploadController@upload_file')->middleware('role:admin');
     Route::post('/upload_file', 'UploadController@send')->name('upload')->middleware('role:admin');
-    Route::delete('/upload/{id}', 'UploadController@delete')->name('delete')->middleware('role:admin');
+    Route::delete('/upload/{id}', 'UploadController@delete')->name('delete_soal')->middleware('role:admin');
 });
+
 
 //User Route
 Route::get('/', 'UserController@index');
-
 Route::get('/download', 'UserController@soal')->middleware('role:user');
 Route::get('/home', 'UserController@home')->middleware('role:user');
 Route::match(['get', 'post'], '/home/edit/{id}', 'UserController@data_kelompok_update')->middleware('role:user');
 Route::match(['get', 'post'], '/home/update/{id}', 'UserController@kelompok_update')->middleware('role:user');
-Route::delete('/home/delete/{id}', 'UserController@delete')->name('delete')->middleware('role:user');
+Route::delete('/home/delete/{id}', 'UserController@delete')->middleware('role:user');
 Route::get('/detail/{id}', 'UserController@detail')->middleware('role:user');
-Route::get('/upload', function() {
-    return view('user.upload');
-});
+Route::get('/upload', 'UserController@upload')->middleware('role:user');
+Route::post('/upload_file', 'UserController@upload_file')->name('upload_jawaban')->middleware('role:user');
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

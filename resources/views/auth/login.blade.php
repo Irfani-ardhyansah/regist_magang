@@ -87,12 +87,22 @@
                 <div class="form-group">
                     <label> <h5>Email</h5></label>
                     <input type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Masukkan Email">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                 </div>
                 </div>
                 <div class="col-lg-10 col-md-6 col-sm-6 col-xs-3">
                 <div class="form-group">
                     <label> <h5>Password</h5> </label>
                     <input type="password" class="form-control" name="password" required placeholder="Masukkan Password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                 </div>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 5%;margin-left: 30%;">Submit</button>

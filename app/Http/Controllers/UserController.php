@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Soal;
 use App\Kelompok;
 use App\Data_kelompok;
+use Auth;
 
 class UserController extends Controller
 {
@@ -16,7 +17,7 @@ class UserController extends Controller
 
     public function soal()
     {
-        $soal = Soal::all();
+        $soal = Soal::where('keterangan', 'soal')->get();
         return view('user.download', compact('soal'));
     }
 
@@ -60,5 +61,38 @@ class UserController extends Controller
     {
         $data = Data_kelompok::findOrFail($id);
         return view('user.detail', compact('data'));
+    }
+
+    public function upload()
+    {
+        return view('user.upload');
+    }
+
+    public function upload_file(Request $request)
+    {
+        $this->validate($request, [
+            'item' => "required|mimes:zip,rar|max:10000"
+        ]);
+
+        try {
+            $data = Soal::create([
+                'user_id' => Auth::user()->id,
+                'keterangan' => 1,
+            ]);
+
+            if($request->hasFile('item')){
+                $file = $request->file('item');
+                $nama_file = $request->name_file;
+                $extension  = $file->getClientOriginalExtension();
+                $fileName = $nama_file.'.'.$extension;
+                $request->file('item')->move('data_jawaban/', $fileName);
+                $data->item = $fileName;
+                $data->save();
+            }
+
+            return back()->with(['success' => 'Jawaban Berhasil DiUpload']);
+        } catch(\Exception $e) {
+            return back()->with(['error' => $e->getMessage()]);
+        }
     }
 }

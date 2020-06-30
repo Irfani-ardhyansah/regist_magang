@@ -6,6 +6,18 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1>Data Mahasiswa Magang</h1>
+                @if (session('success'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {!! session('success') !!}
+                </div>
+                @endif
+                @if (session('error'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {!! session('error') !!}
+                </div>
+                @endif
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -38,8 +50,14 @@
                         <td> {{$row->nama_ketua}} </td>
                         <td> {{$row->kelompok}} </td>
                         <td> {{$row->jumlah_anggota}} </td>
-                        <td> <button class="btn btn-link btn-sm">Jawaban.rar</button> </td>
-                        <td> <a href="{{ url('/admin/detail/'. $row->id)}}" class="btn btn-primary btn-xs">Detail</a> <button class="btn btn-danger btn-xs">Delete</button> </td>
+                        <td> <a href="/data_jawaban/{{$row->user->soal['item']}}" class="btn btn-link btn-sm">{{$row->user->soal['item']}}</a> </td>
+                        <td>
+                            <form action="{{ url('/admin/delete/' . $row->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE" class="form-control"> 
+                                <a href="{{ url('/admin/detail/'. $row->id)}}" class="btn btn-primary btn-xs">Detail</a> <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
                 @endforeach

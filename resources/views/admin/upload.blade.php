@@ -43,9 +43,9 @@
                   @foreach($soal as $row)
                   <tr>
                     <td> {{$loop->iteration}} </td>
-                    <td> {{$row->soal}} </td>
+                    <td> {{$row->item}} </td>
                     <td>
-                      <form action="{{ url('/home/delete/' . $row -> id) }}" method="POST">
+                      <form action="{{ url('/admin/upload/' . $row -> id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" class="form-control">
                       <button class="btn btn-success btn-sm">Edit</button> <a href="/data_soal/{{$row->soal}}" style="margin-left: 2%; margin-right: 2%;" class="btn btn-primary btn-sm">Ungguh</a> <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button>

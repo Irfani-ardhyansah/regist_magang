@@ -33,7 +33,7 @@
             @csrf
             <div class="form-group col-xs-6">
               <label for="">File </label>
-                <input type="file" name="soal" class="form-control-file">
+                <input type="file" name="item" class="form-control-file">
             </div>
             <div class="col-xs-6">
               <label for="">Nama File </label>

@@ -11,7 +11,7 @@ class UploadController extends Controller
 {
     public function upload()
     {
-        $soal = Soal::all();
+        $soal = Soal::where('keterangan', 0)->get();
         return view('admin.upload', compact('soal'));
     }
 
@@ -23,25 +23,26 @@ class UploadController extends Controller
     public function send(Request $request)
     {
         $this->validate($request, [
-            'soal' => "required|mimes:pdf|max:10000"
+            'item' => "required|mimes:pdf|max:10000"
         ]);
 
         try {
             $data = Soal::create([
                 'user_id' => Auth::user()->id,
+                'keterangan' => 0,
             ]);
 
-            if($request->hasFile('soal')){
-                $file = $request->file('soal');
+            if($request->hasFile('item')){
+                $file = $request->file('item');
                 $nama_file = $request->name_file;
                 $extension  = $file->getClientOriginalExtension();
                 $fileName = $nama_file.'.'.$extension;
-                $request->file('soal')->move('data_soal/', $fileName);
-                $data->soal = $fileName;
+                $request->file('item')->move('data_soal/', $fileName);
+                $data->item = $fileName;
                 $data->save();
             }
 
-            return redirect('data_upload')->with(['success' => 'Soal Berhasil DiUpload']);
+            return back()->with(['success' => 'Soal Berhasil DiUpload']);
         } catch(\Exception $e) {
             return back()->with(['error' => $e->getMessage()]);
         }

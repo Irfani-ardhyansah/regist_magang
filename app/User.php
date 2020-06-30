@@ -21,6 +21,11 @@ class User extends Authenticatable
     //     'name', 'email', 'password',
     // ];
 
+    public function soal()
+    {
+        return $this->hasOne('App\Soal');
+    }
+
     public function kelompok()
     {
         return $this->hasOne('App\Kelompok');

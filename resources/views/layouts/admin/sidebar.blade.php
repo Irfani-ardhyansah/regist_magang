@@ -28,7 +28,7 @@
             <a href="{{ url('/admin/upload')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Upload
+                Upload Soal
               </p>
             </a>
           </li>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Kelompok;
 use App\Data_kelompok;
 use App\User;
+use App\Soal;
 
 class DataController extends Controller
 {
@@ -13,6 +14,15 @@ class DataController extends Controller
     {
         $data = Kelompok::all();
         return view('admin.dashboard', compact('data'));
+    }
+
+    public function delete_kelompok($id)
+    {
+        // $gambar = Soal::where('id',$id)->first();
+        // File::delete('data_soal/'.$gambar->soal);
+        $data = Kelompok::findOrFail($id);
+        $data -> delete();
+        return back()->with(['success' => 'Berhasil Dihapus']);
     }
 
     public function detail($id)
@@ -43,4 +53,5 @@ class DataController extends Controller
         $data -> delete();
         return back()->with(['success' => 'Berhasil Dihapus']);
     }
+    
 }

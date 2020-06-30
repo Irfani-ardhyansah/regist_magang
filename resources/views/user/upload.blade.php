@@ -7,26 +7,37 @@
       <div class="row" style="margin-left: 20%;">
         <div class="col-sm-10">
             <h1>Form Upload Jawaban</h1>
-          <table class="table table-borderless" style="margin-top: 5%;">
-            <tbody>
-              <tr>
-                <th>Nama File</th>
-                <td> : </td>
-                <td><input class="form-control" type="text" >
-              </tr>
-              <tr>
-                <th>File</th>
-                <td> : </td>
-                <td>
-                  <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                    <div class="invalid-feedback">File Format RAR/ZIP</div>
-                  </div><small>*File sudah dalam bentuk ZIP/RAR</small></td>
-              </tr>
-            </tbody>
-          </table>
-          <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 2%;margin-left: 30%;margin-bottom: 10%;">Upload</button>
+            @if (session('success'))
+            <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {!! session('success') !!}
+            </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {!! session('error') !!}
+                </div>
+            @endif
+            <div class="card" style="border:none;">
+              <!-- /.card-header -->
+              <div class="card-body">
+                    <form action="{{route('upload_jawaban')}}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group col-xs-6">
+                        <label for="">File </label>
+                          <input type="file" name="item" class="form-control-file">
+                      </div>
+                      <div class="col-xs-6">
+                        <label for="">Nama File </label>
+                        <input type="text" class="form-control col-sm-5" name="name_file" required>
+                        <small>*File bertipe PDF</small>              
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-sm"  style="width: 200px; margin-top: 2%;margin-left: 30%;margin-bottom: 10%;">Upload</button>
+                </form>
+              </div>
+              <!-- /.card-body -->
+            </div>
         </div>
       </div>
       </div>
