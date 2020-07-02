@@ -12,6 +12,11 @@ use App\Transformers\DataKelompokTransformer;
 
 class ApiDataController extends Controller
 {
+    public function connect()
+    {
+        $conn = mysqli_connect("localhost", "root", "", "db_register");
+    }
+
     public function users()
     {
         $user = User::where('name', NULL)->get();

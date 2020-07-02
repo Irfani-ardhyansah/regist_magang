@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('user.home');
+        return view('user.index');
     }
 
     public function soal()
@@ -29,7 +29,7 @@ class UserController extends Controller
         //mengambil id pada Kelompok
         $data_id = $row->id;
         $data_kelompok = Data_kelompok::where('kelompok_id', $data_id)->get();
-        return view('user.data', compact('data', 'data_kelompok'));
+        return view('user.home', compact('data', 'data_kelompok'));
     }
 
     public function data_kelompok_update(Request $request, $id)

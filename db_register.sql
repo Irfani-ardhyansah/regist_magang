@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jun 2020 pada 10.39
+-- Waktu pembuatan: 02 Jul 2020 pada 08.56
 -- Versi server: 10.1.35-MariaDB
 -- Versi PHP: 7.2.9
 
@@ -50,7 +50,9 @@ CREATE TABLE `data_kelompoks` (
 --
 
 INSERT INTO `data_kelompoks` (`id`, `kelompok_id`, `nama`, `nim`, `no_hp`, `sosmed`, `jenis_kelamin`, `email_anggota`, `alamat`, `bidang_minat`, `keahlian`, `status`, `created_at`, `updated_at`) VALUES
-(7, 6, 'Ayu Risqi', 123, '089739892738', 'ayu.risqi', 'Perempuan', 'ayurisqi@gmail.com', 'Madiun', NULL, 'UI/UX', 1, NULL, '2020-06-24 21:04:27');
+(7, 6, 'Ayu Risqi', 123, '089739892738', 'ayu.risqi', 'Perempuan', 'ayurisqi@gmail.com', 'Madiun', NULL, 'UI/UX', 1, NULL, '2020-06-24 21:04:27'),
+(9, 8, 'satu', 1, '01', 'satu.satoe', 'Laki-laki', 'satu@pertama.com', 'Madiun', 'Desain UI / UX,Database,Android,Developer', 'Desain UI / UX', 0, '2020-06-30 01:49:36', '2020-07-01 23:43:16'),
+(10, 8, 'dua', 2, '02', 'due.doea', 'Perempuan', 'doe@dua.com', 'madiun', 'Desain UI / UX,Database,Android,Developer', 'Backend', 0, '2020-06-30 01:49:36', '2020-06-30 01:49:36');
 
 -- --------------------------------------------------------
 
@@ -94,7 +96,8 @@ CREATE TABLE `kelompoks` (
 --
 
 INSERT INTO `kelompoks` (`id`, `user_id`, `universitas`, `fakultas`, `prodi`, `alamat_univ`, `kelompok`, `jumlah_anggota`, `periode_mulai`, `periode_akhir`, `nama_ketua`, `created_at`, `updated_at`) VALUES
-(6, 8, 'Unmer', 'Teknik', 'TI', 'Madiun', 'Kelompok 1', 4, '2020-06-01', '2020-07-01', 'John', '2020-06-17 19:35:12', '2020-06-17 22:38:41');
+(6, 8, 'Unmer', 'Teknik', 'TI', 'Madiun', 'Kelompok 1', 4, '2020-06-02', '2020-06-30', 'John', '2020-06-17 19:35:12', '2020-07-01 23:50:39'),
+(8, 15, 'Unmer', 'Teknik', 'TI', 'Madiun', 'Kelompok 1', 4, '2020-06-01', '2020-06-30', 'ketua', '2020-06-30 01:49:36', '2020-06-30 01:49:36');
 
 -- --------------------------------------------------------
 
@@ -259,7 +262,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@kreasikode.com', NULL, '$2y$10$CTE5D5oAZGgKCT9JIJMf5uBTCap2w3GjR4MIexHLGge.COcps2Jly', NULL, '2020-06-16 22:23:52', '2020-06-16 22:23:52'),
 (8, NULL, 'user@kreasikode.com', NULL, '$2y$10$ktcfKw5YYmTQtiJ5AvMS7Owl7bhnjpHerpK4C0sic7XWZjTx8yIhG', NULL, '2020-06-17 19:35:12', '2020-06-17 19:35:12'),
-(13, NULL, 'ketua@krasikode.com', NULL, '$2y$10$wHgDVFwdgJhdXIDAuFvRWOJKtqArCok0uOtR8spi98i8Q0VCsWzHO', NULL, '2020-06-29 09:02:47', '2020-06-29 09:02:47');
+(15, NULL, 'ketua@kreasikode.com', NULL, '$2y$10$XquzpQp.w.Io70SyBWtYk.ngL9UknTnUjN3806AfRxCk3wk9YCj92', NULL, '2020-06-30 01:49:36', '2020-06-30 01:49:36');
 
 --
 -- Indexes for dumped tables
@@ -354,7 +357,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `data_kelompoks`
 --
 ALTER TABLE `data_kelompoks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -366,7 +369,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `kelompoks`
 --
 ALTER TABLE `kelompoks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -396,7 +399,7 @@ ALTER TABLE `soals`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
