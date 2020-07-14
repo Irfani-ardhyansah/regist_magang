@@ -7,6 +7,7 @@ use App\Soal;
 use App\Kelompok;
 use App\Data_kelompok;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -29,14 +30,19 @@ class UserController extends Controller
         //mengambil id pada Kelompok
         $data_id = $row->id;
         $data_kelompok = Data_kelompok::where('kelompok_id', $data_id)->get();
-        return view('user.home', compact('data', 'data_kelompok'));
+        return view('user.home', compact('data', 'data_kelompok', 'hasil_bidang'));
     }
 
     public function data_kelompok_update(Request $request, $id)
     {
         if($request->isMethod('post')) {
             $data = $request->all();
-            Data_kelompok::where(['id'=>$id])->update(['nama'=>$data['nama'], 'nim'=>$data['nim'], 'jenis_kelamin'=>$data['jenis_kelamin'], 'email_anggota'=>$data['email_anggota'], 'alamat'=>$data['alamat'], 'keahlian'=>$data['keahlian']]);
+            if(!empty($data['bidang_minat'])) {
+                $bidang = implode(",", $data['bidang_minat']);
+            } else {
+                $bidang = NULL;
+            }
+            Data_kelompok::where(['id'=>$id])->update(['nama'=>$data['nama'], 'nim'=>$data['nim'], 'jenis_kelamin'=>$data['jenis_kelamin'], 'email_anggota'=>$data['email_anggota'], 'alamat'=>$data['alamat'], 'bidang_minat'=>$bidang, 'keahlian'=>$data['keahlian']]);
             return redirect()->back()->with('success', 'Update Berhasil');
         }
     }
@@ -70,29 +76,37 @@ class UserController extends Controller
 
     public function upload_file(Request $request)
     {
-        $this->validate($request, [
-            'item' => "required|mimes:zip,rar|max:10000"
+        $validator = Validator::make($request->all(), [
+            'item' => "required|mimes:zip,rar|max:2000"
         ]);
 
-        try {
-            $data = Soal::create([
-                'user_id' => Auth::user()->id,
-                'keterangan' => 1,
-            ]);
+        if ($validator->fails()) {
+            return redirect()->back()->with(['error' => 'File Jawaban Terlalu Besar / Ekstensi Tidak Sesuai!']);
+        } 
 
+        try {
             if($request->hasFile('item')){
                 $file = $request->file('item');
                 $nama_file = $request->name_file;
                 $extension  = $file->getClientOriginalExtension();
                 $fileName = $nama_file.'.'.$extension;
                 $request->file('item')->move('data_jawaban/', $fileName);
-                $data->item = $fileName;
-                $data->save();
+                $item = $fileName;
             }
 
-            return back()->with(['success' => 'Jawaban Berhasil DiUpload']);
+            if(!empty($item)){
+                $data = Soal::create([
+                    'user_id' => Auth::user()->id,
+                    'keterangan' => 1,
+                    'item' => $item,
+                ]);
+            } else {
+                return redirect()->back()->with(['error' => 'File Jawaban Terlalu Besar.']);
+            }
+
+            return redirect()->back()->with(['success' => 'Jawaban Berhasil DiUpload']);
         } catch(\Exception $e) {
-            return back()->with(['error' => $e->getMessage()]);
+            return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
 }

@@ -7,19 +7,22 @@
       <div class="row" style="margin-left: 20%;">
         <div class="col-sm-10">
             <h1>Form Upload Jawaban</h1>
-            @if (session('success'))
-            <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {!! session('success') !!}
-            </div>
-            @endif
-            @if (session('error'))
+            <div class="card" style="border:none;">
+
+              @if (session('success'))
+              <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  {!! session('success') !!}
+              </div>
+              @endif
+
+              @if (session('error'))
                 <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     {!! session('error') !!}
                 </div>
-            @endif
-            <div class="card" style="border:none;">
+              @endif
+
               <!-- /.card-header -->
               <div class="card-body">
                     <form action="{{route('upload_jawaban')}}" method="POST" enctype="multipart/form-data">
@@ -31,7 +34,7 @@
                       <div class="col-xs-6">
                         <label for="">Nama File </label>
                         <input type="text" class="form-control col-sm-5" name="name_file" required>
-                        <small>*File bertipe PDF</small>              
+                        <small>*File bertipe ZIP/RAR</small>              
                       </div>
                       <button type="submit" class="btn btn-primary btn-sm"  style="width: 200px; margin-top: 2%;margin-left: 30%;margin-bottom: 10%;">Upload</button>
                 </form>

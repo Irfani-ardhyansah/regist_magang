@@ -78,7 +78,13 @@
           <tr>
               <td>Berkas Jawaban</td>
               <td>:</td>
-              <td> <a href="/data_jawaban/{{$row->user->soal['item']}}">{{ $row->user->soal['item'] }}</a> </td>
+              <td> 
+                @if($row->user->soal['item'] == true)
+                  <a href="/data_jawaban/{{$row->user->soal['item']}}">{{$row->user->soal['item']}}</a>
+                @else
+                  <span class="badge badge-light">Belum Upload Jawaban</span>
+                @endif
+              </td>
           </tr>
         </tbody>
       </table>
@@ -104,7 +110,7 @@
                     @elseif($rows->status == 3)<span class="badge badge-light">Selesai</span>@endif
                   </td>
                   <td>
-                    <form action="{{ url('/detail/delete/' . $rows -> id) }}" method="POST">
+                    <form action="{{ url('/admin/detail/delete/' . $rows -> id) }}" method="POST">
                       @csrf
                       <input type="hidden" name="_method" value="DELETE" class="form-control">
                       <a href="{{ url('/admin/detail_anggota/'. $rows->id)}}" class="btn btn-primary btn-xs">Detail</a> <span class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal-status-{{ $rows->id }}">Ubah Status</span> <button class="btn btn-danger btn-xs" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button>

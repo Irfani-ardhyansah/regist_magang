@@ -46,9 +46,20 @@
                 <td> : </td>
                 <td>{{$data->keahlian}}</td>
               </tr>
+
+              <tr>
+                <th>Status </th>
+                <td> : </td>
+                <td>
+                  @if($data->status == 0)<span class="badge badge-secondary">Menunggu</span>
+                  @elseif($data->status == 1)<span class="badge badge-success">Diterima</span>
+                  @elseif($data->status == 2)<span class="badge badge-danger">Ditolak</span>
+                  @elseif($data->status == 3)<span class="badge badge-light">Selesai</span>@endif
+                </td>
+              </tr>
             </tbody>
           </table>
-          <a href="{{ url('/home') }}" class="btn btn-secondary" style="width: 200px; margin-top: 5%;margin-left: 40%;margin-bottom: 10%;">Back</a>
+          <a href="{{ url('/home') }}" class="btn btn-secondary" style="width: 200px; margin-top: 5%;margin-left: 55%;margin-bottom: 10%;">Back</a>
         </div>
       </div>
     </div>

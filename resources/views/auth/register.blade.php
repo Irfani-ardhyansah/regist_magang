@@ -26,13 +26,13 @@
                 <div class="col-md-5">
                     <div class="form-group">
                     <label for="exampleInputEmail1"> Nama Ketua </label>
-                    <input type="text" class="form-control" name="nama_ketua" value="{{ old('name') }}">
+                    <input type="text" class="form-control" name="nama_ketua" value="{{ old('name') }}" required>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
                     <label for="exampleInputEmail1"> Email Ketua </label>
-                    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                     </div>
                 </div>
                 </div>
@@ -40,13 +40,13 @@
                 <div class="col-md-5">
                     <div class="form-group">
                     <label for="exampleInputEmail1"> Password </label>
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password" required>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
                     <label for="exampleInputEmail1"> Password Confirm </label>
-                    <input type="password" class="form-control" name="password_confirmation">
+                    <input type="password" class="form-control" name="password_confirmation" required>
                     </div>
                 </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                     <label> Universitas</label>
-                    <input type="text" class="form-control" name="universitas" value="{{ old('universitas') }}">
+                    <input type="text" class="form-control" name="universitas" value="{{ old('universitas') }}" required>
                     </div>
                 </div>
                 </div>
@@ -62,19 +62,19 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label> Fakultas</label>
-                        <input type="text" class="form-control" name="fakultas" value="{{ old('fakultas') }}">
+                        <input type="text" class="form-control" name="fakultas" value="{{ old('fakultas') }}" required>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
                         <label> Prodi</label>
-                        <input type="text" class="form-control" name="prodi" value="{{ old('prodi') }}">
+                        <input type="text" class="form-control" name="prodi" value="{{ old('prodi') }}" required>
                     </div>
                 </div>
                 <div class="col-md-10">
                     <div class="form-group">
                         <label> Alamat Univ</label>
-                        <textarea class="form-control" name="alamat_univ" value="{{ old('alamat_univ') }}" rows="3" style="resize: none;"></textarea>
+                        <textarea class="form-control" name="alamat_univ" value="{{ old('alamat_univ') }}" rows="3" style="resize: none;" required></textarea>
                     </div>
                 </div>
                 </div>
@@ -95,7 +95,7 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label> Jumlah Anggota</label>
-                        <input type="number" class="form-control" name="jumlah_anggota" value="{{ old('jumlah_anggota') }}" placeholder="4">
+                        <input type="number" class="form-control" name="jumlah_anggota" value="{{ old('jumlah_anggota') }}" placeholder="4" required>
                     </div>
                 </div>
                 </div>
@@ -103,13 +103,13 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label> Periode Mulai</label>
-                        <input type="date" class="form-control" name="periode_mulai" value="{{ old('periode_mulai') }}">
+                        <input type="date" class="form-control" name="periode_mulai" value="{{ old('periode_mulai') }}" required>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
                         <label> Periode Akhir</label>
-                        <input type="date" class="form-control" name="periode_akhir" value="{{ old('periode_akhir') }}">
+                        <input type="date" class="form-control" name="periode_akhir" value="{{ old('periode_akhir') }}" required>
                     </div>
                 </div>
                 </div>

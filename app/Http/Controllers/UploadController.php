@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Soal;
 use Auth;
 use File;
+use Illuminate\Support\Facades\Validator;
 
 class UploadController extends Controller
 {
@@ -22,27 +23,35 @@ class UploadController extends Controller
 
     public function send(Request $request)
     {
-        $this->validate($request, [
-            'item' => "required|mimes:pdf|max:10000"
+        $validator = Validator::make($request->all(), [
+            'item' => "required|mimes:pdf|max:2000"
         ]);
 
-        try {
-            $data = Soal::create([
-                'user_id' => Auth::user()->id,
-                'keterangan' => 0,
-            ]);
+        if ($validator->fails()) {
+            return redirect()->back()->with(['error' => 'File Soal Terlalu Besar / Ekstensi Tidak Sesuai!']);
+        }
 
+        try {
             if($request->hasFile('item')){
                 $file = $request->file('item');
                 $nama_file = $request->name_file;
                 $extension  = $file->getClientOriginalExtension();
                 $fileName = $nama_file.'.'.$extension;
                 $request->file('item')->move('data_soal/', $fileName);
-                $data->item = $fileName;
-                $data->save();
+                $item = $fileName;
             }
 
-            return back()->with(['success' => 'Soal Berhasil DiUpload']);
+            if(!empty($item)){
+                $data = Soal::create([
+                    'user_id' => Auth::user()->id,
+                    'keterangan' => 0,
+                    'item' => $item,
+                ]);
+            } else {
+                return redirect()->back()->with(['error' => 'File Jawaban Terlalu Besar.']);
+            }
+
+            return redirect()->route('data_upload')->with(['success' => 'Soal Berhasil DiUpload']);
         } catch(\Exception $e) {
             return back()->with(['error' => $e->getMessage()]);
         }
@@ -51,10 +60,10 @@ class UploadController extends Controller
     public function delete($id)
     {
         $gambar = Soal::where('id',$id)->first();
-        File::delete('data_soal/'.$gambar->soal);
+        File::delete('data_soal/'.$gambar->item);
         
         $soal = Soal::findOrFail($id);
         $soal -> delete();
-        return back()->with(['success' => 'Berhasil Dihapus']);
+        return back()->with(['success' => 'File Soal Berhasil Dihapus']);
     }
 }

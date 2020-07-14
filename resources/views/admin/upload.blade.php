@@ -33,22 +33,22 @@
                 <a href={{ url('/admin/upload_file')}} class="btn btn-primary btn-sm float-right mb-3">Tambah</a>
               <table class="table table-bordered">
                 <thead>                  
-                  <tr>
-                    <th style="width: 10px">No</th>
-                    <th>Nama File</th>
-                    <th>Aksi</th>
+                  <tr class="d-flex">
+                    <th class="col-1">No</th>
+                    <th class="col-3">Nama File</th>
+                    <th class="col-4">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach($soal as $row)
-                  <tr>
-                    <td> {{$loop->iteration}} </td>
-                    <td> {{$row->item}} </td>
-                    <td>
+                  <tr  class="d-flex">
+                    <td class="col-1"> {{$loop->iteration}} </td>
+                    <td class="col-3"> {{$row->item}} </td>
+                    <td class="col-4">
                       <form action="{{ url('/admin/upload/' . $row -> id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" class="form-control">
-                      <button class="btn btn-success btn-sm">Edit</button> <a href="/data_soal/{{$row->soal}}" style="margin-left: 2%; margin-right: 2%;" class="btn btn-primary btn-sm">Ungguh</a> <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button>
+                        <a href="/data_soal/{{$row->item}}" style="margin-left: 2%; margin-right: 2%;" class="btn btn-primary btn-sm">Unduh</a> <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button>
                       </form>
                     </td>
                   </tr>

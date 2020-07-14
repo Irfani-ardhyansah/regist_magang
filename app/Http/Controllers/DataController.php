@@ -44,7 +44,9 @@ class DataController extends Controller
     public function detail_anggota($id)
     {
         $row = Data_kelompok::findOrFail($id);
-        return view('admin.detail_anggota', compact('row'));
+        $bidang_minat = explode(",", $row->bidang_minat);
+        // dd($bidang_minat);
+        return view('admin.detail_anggota', compact('row', 'bidang_minat'));
     }
 
     public function delete($id)

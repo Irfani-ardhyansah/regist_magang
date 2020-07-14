@@ -142,7 +142,10 @@
           <div class="form-group row mt-3">
             <label class="col-sm-2 col-form-label">Gender</label>
               <div class="col-sm-10">
-                  <input type="text" class="form-control" name="jenis_kelamin" value="{{$rows->jenis_kelamin}}" required>
+                <select class="form-control" name="jenis_kelamin">
+                  <option {{ $rows->jenis_kelamin == 'Laki-laki' ? 'selected':'' }} value="Laki-laki">Laki-laki</option>
+                  <option {{ $rows->jenis_kelamin == 'Perempuan' ? 'selected':'' }} value="Perempuan">Perempuan</option>
+                </select>
               </div>
           </div>
           <div class="form-group row mt-3">
@@ -159,8 +162,30 @@
           </div>
           <div class="form-group row mt-3">
           <label class="col-sm-2 col-form-label">Bidang Minat</label>
+            @php($array = array($rows->bidang_minat))
+            @php($hasil = implode(",",$array))
+            @php($bidang = explode(",",$hasil))
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="bidang_minat" value="{{$rows->bidang_minat}}" required>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="Android Developer" {{in_array("Android Developer",$bidang)?"checked":""}}>
+                <label class="form-check-label" for="inlineCheckbox3">Android Developer</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="Frontend" {{in_array("Frontend",$bidang)?"checked":""}}>
+                <label class="form-check-label" for="inlineCheckbox3">Frontend</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="Web Programing" {{in_array("Web Programing",$bidang)?"checked":""}}>
+                <label class="form-check-label" for="inlineCheckbox3">Web Programing</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="Database" {{in_array("Database",$bidang)?"checked":""}}>
+                <label class="form-check-label" for="inlineCheckbox3">Database</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="UI / UX" {{in_array("UI / UX",$bidang)?"checked":""}}>
+                <label class="form-check-label" for="inlineCheckbox3">UI / UX</label>
+              </div>
             </div>
           </div>
           <div class="form-group row mt-3">
@@ -224,7 +249,12 @@
           <div class="form-group row mt-3">
           <label class="col-sm-2 col-form-label">Kelompok</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="kelompok" value="{{$row->kelompok}}" required>
+              <select class="form-control" name="kelompok">
+                <option {{ $rows->kelompok == 'Kelompok 1' ? 'selected':'' }} value="Kelompok 1">Kelompok 1</option>
+                <option {{ $rows->kelompok == 'Kelompok 2' ? 'selected':'' }} value="Kelompok 2">Kelompok 2</option>
+                <option {{ $rows->kelompok == 'Kelompok 3' ? 'selected':'' }} value="Kelompok 3">Kelompok 3</option>
+                <option {{ $rows->kelompok == 'Kelompok 4' ? 'selected':'' }} value="Kelompok 4">Kelompok 4</option>
+              </select>
             </div>
           </div>
           <div class="form-group row mt-3">

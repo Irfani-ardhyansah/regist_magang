@@ -67,23 +67,23 @@
                       <td>:</td>
                       <td>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled checked>
-                          <label class="form-check-label" for="inlineCheckbox3">Android</label>
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled {{in_array("Android Developer",$bidang_minat)?"checked":""}}>
+                          <label class="form-check-label" for="inlineCheckbox3">Android Developer</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled {{in_array("Frontend",$bidang_minat)?"checked":""}}>
                           <label class="form-check-label" for="inlineCheckbox3">Frontend</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled checked>
-                          <label class="form-check-label" for="inlineCheckbox3">Web</label>
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled {{in_array("Web Programing",$bidang_minat)?"checked":""}}>
+                          <label class="form-check-label" for="inlineCheckbox3">Web Programing</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled {{in_array("Database",$bidang_minat)?"checked":""}}>
                           <label class="form-check-label" for="inlineCheckbox3">Database</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled {{in_array("UI / UX",$bidang_minat)?"checked":""}}>
                           <label class="form-check-label" for="inlineCheckbox3">UI / UX</label>
                         </div>
                       </td>
