@@ -12,7 +12,7 @@ class DataController extends Controller
 {
     public function index()
     {
-        $data = Kelompok::all();
+        $data = Kelompok::paginate(10);
         return view('admin.dashboard', compact('data'));
     }
 

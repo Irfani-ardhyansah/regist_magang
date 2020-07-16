@@ -9,7 +9,7 @@
 }
 
 .collapse ul.navbar-nav>li>a {
-    color: 	#4169E1;
+    color: 	#2352AA;
 }
 
 .collapse ul.navbar-nav>li>a:hover {
@@ -46,7 +46,7 @@
 	padding: 10px 10px;
     font-size: 1.8em;
 	font-weight: 400;
-	color: 	#4169E1;
+	color: 	#2352AA;
 }
 
 
@@ -76,7 +76,7 @@
 
 footer {
 	width: 100%;
-	background-color: #4169E1;
+	background-color: #2352AA;
 	padding: 5% 5% 10% 5%;
 	color: #FFF;
 }

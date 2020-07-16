@@ -82,7 +82,7 @@
                 @if($row->user->soal['item'] == true)
                   <a href="/data_jawaban/{{$row->user->soal['item']}}">{{$row->user->soal['item']}}</a>
                 @else
-                  <span class="badge badge-light">Belum Upload Jawaban</span>
+                  <span class="badge badge-warning">Belum Upload Jawaban</span>
                 @endif
               </td>
           </tr>

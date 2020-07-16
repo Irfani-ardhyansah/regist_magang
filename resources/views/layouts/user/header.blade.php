@@ -1,7 +1,8 @@
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-trans">
-    <h1 class="ml-2"> <span style="color: #FF8C00;">kreasi</span><span style="color: #4169E1;">kode</span> <br>
-      <span style="font-size: 0.6em; letter-spacing: 9px;">indonesia</span></h1>
+    <h1 class="ml-2" style = "font-family:verdana;"> <span style="color: #FF8C00;">kreasi</span><span style="color: #2352AA;">kode</span> <br>
+      {{-- <span style="font-size: 0.6em; letter-spacing: 9px;">indonesia</span> --}}
+    </h1>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

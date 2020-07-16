@@ -79,7 +79,7 @@
           @endforeach
         </div>
       </div>
-      <table class="table">
+      <table class="table table-bordered">
         <thead class="thead-light">
           <tr>
             <th scope="col">No</th>
@@ -91,7 +91,7 @@
         <tbody>
         @foreach($data_kelompok as $rows)
           <tr>
-            <th scope="row">{{$loop->iteration}}</th>
+            <th scope="row">{{$loop->iteration}}.</th>
             <td>{{$rows->nama}}</td>
             <td>
               @if($rows->status == 0)<span class="badge badge-secondary">Menunggu</span>

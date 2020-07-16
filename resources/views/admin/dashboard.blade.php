@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Data Mahasiswa Magang</h1>
+                <h1 style = "font-family:verdana; color: #121212;"> <b style="color: #343A40;"> Data Mahasiswa Magang</b></h1>
                 @if (session('success'))
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -27,11 +27,11 @@
     <section class="content">
 
     <!-- Default box -->
-            <div class="card">
+        <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
                 <table class="table table-bordered">
-                <thead>                  
+                <thead class="thead-light">                  
                     <tr>
                     <th style="width: 10px">No</th>
                     <th>Univeristas</th>
@@ -42,15 +42,21 @@
                     <th>Aksi</th>
                     </tr>
                 </thead>
-                @foreach($data as $row)
+                @forelse($data as $row)
                 <tbody>
                     <tr>
-                        <td> {{$loop->iteration}} </td>
+                        <td> {{$loop->iteration}}. </td>
                         <td> {{$row->universitas}} </td>
                         <td> {{$row->nama_ketua}} </td>
                         <td> {{$row->kelompok}} </td>
                         <td> {{$row->jumlah_anggota}} </td>
-                        <td> <a href="/data_jawaban/{{$row->user->soal['item']}}" class="btn btn-link btn-sm">{{$row->user->soal['item']}}</a> </td>
+                        <td> 
+                            @if($row->user->soal['item'] == true)
+                                <a href="/data_jawaban/{{$row->user->soal['item']}}">{{$row->user->soal['item']}}</a>
+                            @else
+                                <span class="badge badge-warning">Belum Upload Jawaban</span>
+                            @endif
+                        </td>
                         <td>
                             <form action="{{ url('/admin/delete/' . $row->id) }}" method="POST">
                                 @csrf
@@ -59,16 +65,21 @@
                             </form>
                         </td>
                     </tr>
+                    @empty
+                    <tr>
+                        <td class="text-center" colspan="7">Tidak ada data</td>
+                    </tr>
                 </tbody>
-                @endforeach
+                @endforelse
                 </table>
             </div>
             <!-- /.card-body -->
-            </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-        
         </div>
+        {{$data->links()}}
+        <!-- /.card-body -->
+        {{-- <div class="card-footer">
+        
+        </div> --}}
         <!-- /.card-footer-->
     </div>
     <!-- /.card -->

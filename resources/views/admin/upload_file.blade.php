@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Form Tambah Soal</h1>
+              <h1 style="font-family:verdana;"> <b style="color: #343A40;">Form Tambah Soal</b> </h1>
             </div>
             @if (session('success'))
             <div class="alert alert-success alert-dismissible">
@@ -46,9 +46,9 @@
     <!-- /.card-body -->
   </div>
 <!-- /.card-body -->
-  <div class="card-footer">
+  {{-- <div class="card-footer">
     
-  </div>
+  </div> --}}
   <!-- /.card-footer-->
 
 </section>

@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Data Soal</h1>
+                <h1 style="font-family:verdana;"> <b style="color: #343A40;">Data Soal</b> </h1>
             </div>
             @if (session('success'))
               <div class="alert alert-success alert-dismissible">
@@ -30,21 +30,21 @@
           <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
-                <a href={{ url('/admin/upload_file')}} class="btn btn-primary btn-sm float-right mb-3">Tambah</a>
+                <a href={{ url('/admin/upload_file')}} class="btn btn-success btn-sm float-right mb-3">Tambah</a>
               <table class="table table-bordered">
-                <thead>                  
-                  <tr class="d-flex">
-                    <th class="col-1">No</th>
-                    <th class="col-3">Nama File</th>
-                    <th class="col-4">Aksi</th>
+                <thead class="thead-light">                  
+                  <tr>
+                    <th scope="col" >No</th>
+                    <th scope="col" >Nama File</th>
+                    <th scope="col" >Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($soal as $row)
-                  <tr  class="d-flex">
-                    <td class="col-1"> {{$loop->iteration}} </td>
-                    <td class="col-3"> {{$row->item}} </td>
-                    <td class="col-4">
+                  @forelse($soal as $row)
+                  <tr>
+                    <td scope="col" > {{$loop->iteration}}. </td>
+                    <td scope="col" > {{$row->item}} </td>
+                    <td scope="col" class="text-center" >
                       <form action="{{ url('/admin/upload/' . $row -> id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" class="form-control">
@@ -52,16 +52,20 @@
                       </form>
                     </td>
                   </tr>
-                  @endforeach
+                  @empty
+                  <tr>
+                      <td class="text-center" colspan="6"><h6 style="font-family:monaco;"> <b style="color: #343A40;">Tidak Ada Data</b> </h6></td>
+                  </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>
             <!-- /.card-body -->
           </div>
       <!-- /.card-body -->
-      <div class="card-footer">
+      {{-- <div class="card-footer">
         
-      </div>
+      </div> --}}
       <!-- /.card-footer-->
     </div>
     <!-- /.card -->
