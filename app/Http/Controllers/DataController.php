@@ -37,7 +37,7 @@ class DataController extends Controller
         if($request->isMethod('post')) {
             $data = $request->all();
             Data_kelompok::where(['id'=>$id])->update(['status'=>$data['status']]);
-            return redirect()->back()->with('success', 'Update Berhasil');
+            return redirect()->back()->with('success', 'Berhasil Mengubah Status');
         }
     }
 
