@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/user', 'ApiDataController@users');
-Route::get('/kelompok', 'ApiDataController@kelompok');
-Route::get('/data_kelompok', 'ApiDataController@data_kelompok');
+// Route::get('/user', 'ApiDataController@users');
+// Route::get('/kelompok', 'ApiDataController@kelompok');
+// Route::get('/data_kelompok', 'ApiDataController@data_kelompok');
+
+Route::post('login','Api\AuthController@login');
+Route::post('register','Api\AuthController@register');
+Route::get('logout', 'Api\AuthController@logout');

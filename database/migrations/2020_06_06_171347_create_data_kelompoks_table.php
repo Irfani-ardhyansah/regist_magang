@@ -23,6 +23,7 @@ class CreateDataKelompoksTable extends Migration
             $table->string('alamat');
             $table->string('bidang_minat');
             $table->string('keahlian');
+            $table->integer('status');
             $table->timestamps();
         });
 
