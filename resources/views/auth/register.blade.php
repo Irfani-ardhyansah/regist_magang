@@ -82,7 +82,7 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label> Kelompok </label>
-                        <select class="form-control" name="kelompok">
+                        <select class="form-control" name="kelompok" required>
                             <option> - </option>
                             <option value="Kelompok 1">Kelompok 1</option>
                             <option value="Kelompok 2">Kelompok 2</option>
@@ -119,7 +119,6 @@
         <span class="addanggota btn btn-success" style="margin-left: 70%; margin-top: 3%;">Tambah Anggota</span>
 
         <div class="anggota">
-
         </div>
 
         <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 2%;margin-left: 40%; margin-bottom: 5%;">Submit</button>

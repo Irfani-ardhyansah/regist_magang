@@ -77,6 +77,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
@@ -100,7 +101,7 @@ class RegisterController extends Controller
 
         if(!empty($data['nama'])) {
             foreach ($data['nama'] as $item => $value) {
-                $bidang = implode(",", $data['bidang_minat']);
+                $bidang = implode(",", $data['bidang_minat'][$item]);
                 $data3 = array(
                     'kelompok_id' => $kelompok->id,
                     'nama' => $data['nama'][$item],

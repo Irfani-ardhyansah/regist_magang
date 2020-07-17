@@ -59,7 +59,7 @@
               </tr>
             </tbody>
           </table>
-          <a href="{{ url('/home') }}" class="btn btn-secondary" style="width: 200px; margin-top: 5%;margin-left: 55%;margin-bottom: 10%;">Back</a>
+          <a href="{{ url('/home') }}" class="btn btn-light" style="width: 200px; margin-top: 5%;margin-left: 55%;margin-bottom: 10%;">Back</a>
         </div>
       </div>
     </div>
