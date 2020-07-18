@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,10 +12,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\User::create([
+        $user = User::create([
             'name' => 'admin',
             'email' => 'admin@kreasikode.com',
             'password' => Hash::make('secret')
         ]);
+        $user->syncRoles('admin');
     }
 }

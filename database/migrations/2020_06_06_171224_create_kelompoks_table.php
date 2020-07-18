@@ -25,7 +25,6 @@ class CreateKelompoksTable extends Migration
             $table->date('periode_mulai');
             $table->date('periode_akhir');
             $table->string('nama_ketua');
-            $table->integer('status');
             $table->timestamps();
         });
 

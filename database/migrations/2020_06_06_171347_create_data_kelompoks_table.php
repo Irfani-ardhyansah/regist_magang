@@ -18,8 +18,10 @@ class CreateDataKelompoksTable extends Migration
             $table->integer('kelompok_id')->unsigned();
             $table->string('nama');
             $table->integer('nim')->unique();
+            $table->string('no_hp');
+            $table->string('sosmed');
             $table->string('jenis_kelamin');
-            $table->string('email')->unique();
+            $table->string('email_anggota')->unique();
             $table->string('alamat');
             $table->string('bidang_minat');
             $table->string('keahlian');
