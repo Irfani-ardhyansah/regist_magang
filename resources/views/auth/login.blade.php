@@ -83,7 +83,7 @@
             
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <div class="col-lg-10 col-md-6 col-sm-6 col-xs-3">
+                <div class="col-lg-10 col-md-8 col-sm-6 col-xs-4">
                     <div class="form-group">
                         <label> <h5>Email</h5></label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="Masukkan Email">
