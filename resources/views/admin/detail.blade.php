@@ -142,7 +142,7 @@
   <!-- /.card-footer-->
 </section>
 
-<!-- Modal -->
+<!-- Modal Ubah Status Magang -->
 @foreach($data_kelompok as $rows)
 <div class="modal fade" id="modal-status-{{ $rows->id }}">
   <div class="modal-dialog">

@@ -30,6 +30,7 @@ class UserController extends Controller
         //mengambil id pada Kelompok
         $data_id = $row->id;
         $data_kelompok = Data_kelompok::where('kelompok_id', $data_id)->get();
+
         return view('user.home', compact('data', 'data_kelompok'));
     }
 

@@ -25,25 +25,19 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid credintials'
-            ]);
+            ], 500);
         }
 
         return response()->json([
             'success' => true,
             'token' => $token,
             'user' => Auth::user(),
-            'kelompok' => 'Kelompok Berhasil ditambah',
-            // 'data_anggota' => 'Data Anggota Berhasil Ditambah'
-        ]);
+            'kelompok' => Kelompok::where('user_id', Auth::user()->id)->get()
+        ], 200);
     }
 
     public function register(Request $request)
     {
-        // $encryptedPass = Hash::make($request->password);
-
-        // $user = new User;
-        $kelompok = new Kelompok;
-        $data_kelompok = new Data_kelompok;
 
         try{
             $user = User::create([
@@ -87,12 +81,16 @@ class AuthController extends Controller
             //     }
             // }
             // $user->save();
-            return $this->login($request);
+            return response()->json([
+                'success' => true,
+                'user' => $user,
+                'kelompok' => $kelompok
+            ], 200);
         } catch(Exception $e){  
             return response()->json([
                 'success' => false,
                 'message'  => ''.$e
-            ]);
+            ], 500);
         }
     }
 
@@ -103,12 +101,12 @@ class AuthController extends Controller
             return response()->json([
                 'success'   =>  true,
                 'message'   =>  'Logout Berhasil'
-            ]);
+            ], 200);
         } catch(Exception $e){
             return response()->json([
                 'success'   =>  false,
                 'message'   =>  ''.$e
-            ]);
+            ], 500);
         }
     }
 }

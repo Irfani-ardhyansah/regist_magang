@@ -17,7 +17,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="{{ url('/admin/dashboard')}}" class="nav-link">
+            <a href="{{ route('data.index')}}" class="nav-link {{set_active('data.index')}}">
               <i class="nav-icon fa fa-folder"></i>
               <p>
                 Data Magang
@@ -26,7 +26,7 @@
             
           </li>
           <li class="nav-item">
-            <a href="{{ url('/admin/upload')}}" class="nav-link">
+            <a href="{{ route('data_upload')}}" class="nav-link {{set_active('data_upload')}}">
               <i class="nav-icon fa fa-file"></i>
               <p>
                 Data Soal

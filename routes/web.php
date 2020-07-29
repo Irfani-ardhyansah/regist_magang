@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin'], function() {
     
-    Route::get('/dashboard', 'DataController@index')->middleware('role:admin');
+    Route::get('/dashboard', 'DataController@index')->middleware('role:admin')->name('data.index');
     Route::delete('/delete/{id}', 'DataController@delete_kelompok')->middleware('role:admin');
     Route::get('/detail/{id}', 'DataController@detail')->middleware('role:admin');
     Route::match(['get', 'post'], '/detail/{id}/change_status', 'DataController@change_status')->middleware('role:admin');
     Route::get('/detail_anggota/{id}', 'DataController@detail_anggota')->middleware('role:admin');
     Route::delete('/detail/delete/{id}', 'DataController@delete')->middleware('role:admin');
     
-    Route::get('/upload', 'UploadController@upload')->name('data_upload')->middleware('role:admin');
+    Route::get('/upload', 'UploadController@upload')->middleware('role:admin')->name('data_upload');
     
     Route::get('/upload_file', 'UploadController@upload_file')->middleware('role:admin');
     Route::post('/upload_file', 'UploadController@send')->name('upload')->middleware('role:admin');
