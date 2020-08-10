@@ -66,7 +66,7 @@
                 <th>Berkas Jawaban</th>
                 <td> : </td>
                 <td>
-                  @if($row->user->soal['item'] == true)
+                  @if(!empty($row->user->soal['item']))
                     <a href="/data_jawaban/{{$row->user->soal['item']}}">{{$row->user->soal['item']}}</a>
                   @else
                     <span class="badge badge-light">Belum Upload Jawaban</span>
