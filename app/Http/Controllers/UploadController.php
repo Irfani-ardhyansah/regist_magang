@@ -59,8 +59,8 @@ class UploadController extends Controller
 
     public function delete($id)
     {
-        $gambar = Soal::where('id',$id)->first();
-        File::delete('data_soal/'.$gambar->item);
+        $soal = Soal::where('id',$id)->first();
+        File::delete('data_soal/'.$soal->item);
         
         $soal = Soal::findOrFail($id);
         $soal -> delete();

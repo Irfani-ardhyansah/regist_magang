@@ -7,6 +7,7 @@ use App\Kelompok;
 use App\Data_kelompok;
 use App\User;
 use App\Soal;
+use File;
 
 class DataController extends Controller
 {
@@ -18,8 +19,14 @@ class DataController extends Controller
 
     public function delete_kelompok($id)
     {
-        // $gambar = Soal::where('id',$id)->first();
-        // File::delete('data_soal/'.$gambar->soal);
+        //Mendapatkan User id
+        $user_id = Kelompok::where('id', $id)->first()->user_id;
+        //mencari jawaban yang diupload user
+        $jawaban = Soal::where('user_id',$user_id)->first();
+        //Menghapus file jawaban pada server
+        File::delete('data_jawaban/'.$jawaban->item);
+        $jawaban->delete();
+
         $data = Kelompok::findOrFail($id);
         $data -> delete();
         return back()->with(['success' => 'Berhasil Dihapus']);
@@ -50,7 +57,7 @@ class DataController extends Controller
     }
 
     public function delete($id)
-    {        
+    {      
         $data = Data_kelompok::findOrFail($id);
         $data -> delete();
         return back()->with(['success' => 'Berhasil Dihapus']);
