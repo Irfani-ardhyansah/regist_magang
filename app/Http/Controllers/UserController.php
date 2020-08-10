@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function soal()
     {
-        $soal = Soal::where('keterangan', 'soal')->get();
+        $soal = Soal::where('keterangan', 0)->get();
         return view('user.download', compact('soal'));
     }
 
