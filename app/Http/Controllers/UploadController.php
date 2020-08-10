@@ -13,7 +13,7 @@ class UploadController extends Controller
     public function upload()
     {
         $soal = Soal::where('keterangan', 0)->get();
-        return view('admin.upload', compact('soal'));
+        return view('admin.data_upload', compact('soal'));
     }
 
     public function upload_file()
