@@ -18,12 +18,12 @@
 
   @yield('content')
 
-<footer class="container-fluid text-center"  style="position: absolute; height: 30%;">
+<footer class="container-fluid text-center"  style="position: absolute; height: 40%;">
   <div class="row">
     <div class="col-sm-4">
-      <h3>Contact Us</h3>
+      <h3>Address</h3>
       <br>
-      <h4>Our Address and contact info here.</h4>
+      <h4>Jl. Garuda No.78A, Manukan, Condong Catur, Sleman, Kec. Depok, Kabupaten Sleman, DIY 55283</h4>
     </div>
     <div class="col-sm-4">
 
