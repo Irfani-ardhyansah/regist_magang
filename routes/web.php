@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin'], function() {
 Route::get('/', 'UserController@index');
 Route::get('/download', 'UserController@soal')->middleware('role:user');
 Route::get('/home', 'UserController@home')->middleware('role:user');
+Route::post('/add_anggota', 'UserController@store_data_anggota')->middleware('role:user');
 Route::match(['get', 'post'], '/home/edit/{id}', 'UserController@data_kelompok_update')->middleware('role:user');
 Route::match(['get', 'post'], '/home/update/{id}', 'UserController@kelompok_update')->middleware('role:user');
 Route::delete('/home/delete/{id}', 'UserController@delete')->middleware('role:user');

@@ -30,8 +30,9 @@ class UserController extends Controller
         //mengambil id pada Kelompok
         $data_id = $row->id;
         $data_kelompok = Data_kelompok::where('kelompok_id', $data_id)->get();
-
-        return view('user.home', compact('data', 'data_kelompok'));
+        $total = $data_kelompok->count();
+        // dd($total);
+        return view('user.home', compact('data', 'data_kelompok', 'total')); 
     }
 
     public function data_kelompok_update(Request $request, $id)
@@ -46,6 +47,37 @@ class UserController extends Controller
             Data_kelompok::where(['id'=>$id])->update(['nama'=>$data['nama'], 'nim'=>$data['nim'], 'jenis_kelamin'=>$data['jenis_kelamin'], 'email_anggota'=>$data['email_anggota'], 'alamat'=>$data['alamat'], 'bidang_minat'=>$bidang, 'keahlian'=>$data['keahlian']]);
             return redirect()->back()->with('success', 'Update Berhasil');
         }
+    }
+
+    public function store_data_anggota(Request $request)
+    {
+        try {
+            $kelompok = Kelompok::where('user_id', auth()->user()->id)->first();
+        
+            foreach($kelompok as $row){
+                $kelompok_id = $kelompok->id;
+            }
+            
+            $bidang = implode(",", $request['bidang_minat']);
+            $data = ([
+                'kelompok_id' => $kelompok_id,
+                'nama' => $request['nama'],
+                'nim' => $request['nim'],
+                'jenis_kelamin' => $request['jenis_kelamin'],
+                'no_hp' => $request['no_hp'],
+                'status' => 0,
+                'sosmed' => $request['sosmed'],
+                'email_anggota' => $request['email_anggota'],
+                'alamat' => $request['alamat'],
+                'bidang_minat' => $bidang,
+                'keahlian' => $request['keahlian']
+            ]);
+            Data_kelompok::create($data);
+            return redirect()->back()->with('success', 'Data Anggota Berhasil Diinput!');
+        } catch(Exception $e){
+            return redirect()->back()->with('error', 'Data Anggota Tidak Berhasil Diinput');
+        }
+
     }
 
     public function kelompok_update(Request $request, $id)

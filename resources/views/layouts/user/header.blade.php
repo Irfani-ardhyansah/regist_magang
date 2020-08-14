@@ -1,6 +1,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-trans">
     <h1 class="ml-2" style = "font-family:verdana;"> <span style="color: #FF8C00;">kreasi</span><span style="color: #2352AA;">kode</span> <br>
+      {{-- <img src="Logo.jpg" style="width:300px;height:300px; margin-left:3%; margin-top:1%;"> --}}
       {{-- <span style="font-size: 0.6em; letter-spacing: 9px;">indonesia</span> --}}
     </h1>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

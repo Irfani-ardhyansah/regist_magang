@@ -76,7 +76,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
@@ -117,7 +116,7 @@ class RegisterController extends Controller
                 Data_kelompok::create($data3);
             }
         }
-        return $user;
+        return $user->with('success', 'Data Berhasil Diinput!');
     }
 
     public function register(Request $request)

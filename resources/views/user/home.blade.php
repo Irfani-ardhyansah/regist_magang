@@ -10,6 +10,20 @@
   
             <tbody>
               <h1 style="margin-bottom: 5%;">Data Kelompok Magang</h1>
+
+              @if (session('success'))
+                <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {!! session('success') !!}
+                </div>
+              @endif
+              @if (session('error'))
+                  <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      {!! session('error') !!}
+                  </div>
+              @endif
+
               @foreach($data as $row)
               <tr>
                 <th>Universitas</th>
@@ -81,6 +95,11 @@
       </div>
       <table class="table table-bordered">
         <thead class="thead-light">
+
+          @if($total < 5)
+            <button class="btn btn-info btn-sm btn-flat pull-right mb-2" data-toggle="modal" data-target="#tambahModal">Tambah Anggota</button>
+          @endif
+
           <tr>
             <th scope="col">No</th>
             <th scope="col">Nama Anggota</th>
@@ -89,29 +108,136 @@
           </tr>
         </thead>
         <tbody>
-        @foreach($data_kelompok as $rows)
-          <tr>
-            <th scope="row">{{$loop->iteration}}.</th>
-            <td>{{$rows->nama}}</td>
-            <td>
-              @if($rows->status == 0)<span class="badge badge-secondary">Menunggu</span>
-              @elseif($rows->status == 1)<span class="badge badge-success">Diterima</span>
-              @elseif($rows->status == 2)<span class="badge badge-danger">Ditolak</span>
-              @elseif($rows->status == 3)<span class="badge badge-light">Selesai</span>@endif
-            </td>
-            <td>
-              <form action="{{ url('/home/delete/' . $rows -> id) }}" method="POST">
-                @csrf
-                <input type="hidden" name="_method" value="DELETE" class="form-control"> 
-                <a href="{{url('/detail/'.$rows->id)}}" class="btn btn-primary btn-sm">Detail</a>  <span class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal-{{ $rows->id }}">Edit</span>  <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button>
-              </form>
-            </td>
-          </tr>
-        @endforeach
+          @forelse($data_kelompok as $rows)
+            <tr>
+              <th scope="row">{{$loop->iteration}}.</th>
+              <td>{{$rows->nama}}</td>
+              <td>
+                @if($rows->status == 0)<span class="badge badge-secondary">Menunggu</span>
+                @elseif($rows->status == 1)<span class="badge badge-success">Diterima</span>
+                @elseif($rows->status == 2)<span class="badge badge-danger">Ditolak</span>
+                @elseif($rows->status == 3)<span class="badge badge-light">Selesai</span>@endif
+              </td>
+              <td>
+                <form action="{{ url('/home/delete/' . $rows -> id) }}" method="POST">
+                  @csrf
+                  <input type="hidden" name="_method" value="DELETE" class="form-control"> 
+                  <a href="{{url('/detail/'.$rows->id)}}" class="btn btn-secondary btn-sm">Detail</a>  <span class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal-{{ $rows->id }}">Edit</span>  <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button>
+                </form>
+              </td>
+            </tr>
+            @empty
+              <tr>
+                  <td class="text-center" colspan="7">Tidak ada data</td>
+              </tr>
+          @endforelse
         </tbody>
       </table>
     </div>
   </div>
+
+{{-- Modal Tambah Anggota --}}
+<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal Edit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url('/add_anggota') }}" method="POST">
+          @csrf
+          <div class="form-group row mt-3">
+          <label class="col-sm-2 col-form-label">Nama</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="nama" required>
+            </div>
+          </div>
+          <div class="form-group row mt-3">
+          <label class="col-sm-2 col-form-label">NIM</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="nim" required>
+            </div>
+          </div>
+          <div class="form-group row mt-3">
+            <label class="col-sm-2 col-form-label">No HP</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control" name="no_hp" required>
+              </div>
+            </div>
+            <div class="form-group row mt-3">
+              <label class="col-sm-2 col-form-label">Sosmed</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="sosmed" required>
+                </div>
+              </div>
+          <div class="form-group row mt-3">
+            <label class="col-sm-2 col-form-label">Gender</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="jenis_kelamin">
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+          </div>
+          <div class="form-group row mt-3">
+          <label class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                  <input type="email" class="form-control" name="email_anggota" required>
+              </div>
+          </div>
+          <div class="form-group row mt-3">
+          <label class="col-sm-2 col-form-label">Alamat</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="alamat" required>
+            </div>
+          </div>
+          <div class="form-group row mt-3">
+          <label class="col-sm-2 col-form-label">Bidang Minat</label>
+            <div class="col-sm-10">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="Android Developer">
+                <label class="form-check-label" for="inlineCheckbox3">Android Developer</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="Frontend">
+                <label class="form-check-label" for="inlineCheckbox3">Frontend</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="Web Programing">
+                <label class="form-check-label" for="inlineCheckbox3">Web Programing</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="Database">
+                <label class="form-check-label" for="inlineCheckbox3">Database</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="bidang_minat[]" value="UI / UX">
+                <label class="form-check-label" for="inlineCheckbox3">UI / UX</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row mt-3">
+            <label class="col-sm-2 col-form-label">Keahlian</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="keahlian" required>
+                  <option> - </option> 
+                  <option value="UI / UX">UI / UX</option> 
+                  <option value="Web Programing">Web Programing</option> 
+                  <option value="Android Developer">Android Developer</option> 
+                  <option value="Frontend">Frontend</option> 
+                  <option value="Database">Database</option> 
+                </select>
+              </div>
+          </div>
+      </div>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 <!-- Modal Edit Anggota-->
 @foreach($data_kelompok as $rows)
@@ -250,10 +376,10 @@
           <label class="col-sm-2 col-form-label">Kelompok</label>
             <div class="col-sm-10">
               <select class="form-control" name="kelompok">
-                <option {{ $rows->kelompok == 'Kelompok 1' ? 'selected':'' }} value="Kelompok 1">Kelompok 1</option>
-                <option {{ $rows->kelompok == 'Kelompok 2' ? 'selected':'' }} value="Kelompok 2">Kelompok 2</option>
-                <option {{ $rows->kelompok == 'Kelompok 3' ? 'selected':'' }} value="Kelompok 3">Kelompok 3</option>
-                <option {{ $rows->kelompok == 'Kelompok 4' ? 'selected':'' }} value="Kelompok 4">Kelompok 4</option>
+                <option {{ $row->kelompok == 'Kelompok 1' ? 'selected':'' }} value="Kelompok 1">Kelompok 1</option>
+                <option {{ $row->kelompok == 'Kelompok 2' ? 'selected':'' }} value="Kelompok 2">Kelompok 2</option>
+                <option {{ $row->kelompok == 'Kelompok 3' ? 'selected':'' }} value="Kelompok 3">Kelompok 3</option>
+                <option {{ $row->kelompok == 'Kelompok 4' ? 'selected':'' }} value="Kelompok 4">Kelompok 4</option>
               </select>
             </div>
           </div>
