@@ -54,18 +54,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            // 'nama_ketua' => ['required', 'string', 'max:255'],
-            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'password' => ['required', 'string', 'min:5', 'confirmed'],
-            // 'universitas' => ['required'],
-            // 'fakultas' => ['required'],
-            // 'prodi' => ['required'],
-            // 'alamat_univ' => ['required'],
-            // 'kelompok' => ['required'],
-            // 'jumlah_anggota' => ['required'],
-            // 'periode_mulai' => ['required'],
-            // 'periode_akhir' => ['required'],
-            // 'nama' => ['required']
+            'nama_ketua' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'universitas' => ['required'],
+            'fakultas' => ['required'],
+            'prodi' => ['required'],
+            'alamat_univ' => ['required'],
+            'kelompok' => ['required'],
+            'jumlah_anggota' => ['required'],
+            'periode_mulai' => ['required'],
+            'periode_akhir' => ['required']
         ]);
     }
 

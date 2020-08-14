@@ -6,7 +6,7 @@
     <div class="landing-text">
         <form method="POST" action="{{ route('register') }}">
         @csrf
-        <div class="card" style=" width: 50rem; height: 45rem; position: relative; border:none;">
+        <div class="card" style=" margin-top:7%; width: 50rem; height: 45rem; position: relative; border:none;">
             <div class="card-body ">
             <h1>Form Registrasi</h1>
             @if (session('success'))
@@ -123,6 +123,6 @@
 
         <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 2%;margin-left: 40%; margin-bottom: 5%;">Submit</button>
         </form>
-        </div>
     </div>
+</div>
 @endsection
