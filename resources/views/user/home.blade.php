@@ -266,6 +266,18 @@
             </div>
           </div>
           <div class="form-group row mt-3">
+            <label class="col-sm-2 col-form-label">No HP</label>
+              <div class="col-sm-10">
+                  <input type="number" class="form-control" name="no_hp" value="{{$rows->no_hp}}" required>
+              </div>
+            </div>
+            <div class="form-group row mt-3">
+              <label class="col-sm-2 col-form-label">Sosmed</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="sosmed" value="{{$rows->sosmed}}" required>
+                </div>
+              </div>
+          <div class="form-group row mt-3">
             <label class="col-sm-2 col-form-label">Gender</label>
               <div class="col-sm-10">
                 <select class="form-control" name="jenis_kelamin">

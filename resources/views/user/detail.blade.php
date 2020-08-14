@@ -21,6 +21,16 @@
                 <td>{{$data->nim}}</td>
               </tr>
               <tr>
+                <th>No Hp</th>
+                <td> : </td>
+                <td>{{$data->no_hp}}</td>
+              </tr>
+              <tr>
+                <th>Sosial Media</th>
+                <td> : </td>
+                <td>{{$data->sosmed}}</td>
+              </tr>
+              <tr>
                 <th>Jenis Kelamin</th>
                 <td> : </td>
                 <td>{{$data->jenis_kelamin}}</td>

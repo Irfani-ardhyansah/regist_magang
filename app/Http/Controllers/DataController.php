@@ -8,6 +8,7 @@ use App\Data_kelompok;
 use App\User;
 use App\Soal;
 use File;
+use Mail;
 
 class DataController extends Controller
 {
@@ -42,9 +43,40 @@ class DataController extends Controller
     public function change_status(Request $request, $id)
     {
         if($request->isMethod('post')) {
+            //Menangkap Request Dari USer
             $data = $request->all();
-            Data_kelompok::where(['id'=>$id])->update(['status'=>$data['status']]);
-            return redirect()->back()->with('success', 'Berhasil Mengubah Status');
+            //Mencari Data Terkait
+            $data_kelompok = Data_kelompok::where(['id'=>$id])->first();
+            //Mencari Email dari Data terkait
+            $email = $data_kelompok->email_anggota;
+            //Mengupdate data
+            $data_kelompok->update(['status'=>$data['status']]);
+
+            // Data_kelompok::where(['id'=>$id])->update(['status'=>$data['status']]);
+            if($data['status'] == 1) {
+                Mail::send('mails.diterima', ['email' => $email], function($m) use($email){
+                    $m->subject('Pemberitahuan Dari KreasiKode');
+                    $m->from('no-reply@kreasikode.com', 'HRD');
+                    $m->to($email);
+                });
+                return redirect()->back()->with('success', 'Berhasil Mengubah Status Diterima');
+            } else if ($data['status'] == 2) {
+                Mail::send('mails.ditolak', ['email' => $email], function($m) use($email){
+                    $m->subject('Pemberitahuan Dari KreasiKode');
+                    $m->from('no-reply@kreasikode.com', 'HRD');
+                    $m->to($email);
+                });
+                return redirect()->back()->with('success', 'Berhasil Mengubah Status Ditolak');
+            } else if ($data['status'] == 3) {
+                Mail::send('mails.selesai', ['email' => $email], function($m) use($email){
+                    $m->subject('Pemberitahuan Dari KreasiKode');
+                    $m->from('no-reply@kreasikode.com', 'HRD');
+                    $m->to($email);
+                });
+                return redirect()->back()->with('success', 'Berhasil Mengubah Status Selesai');
+            } else {
+                return redirect()->back()->with('success', 'Berhasil Mengubah Status Menunggu');
+            }
         }
     }
 

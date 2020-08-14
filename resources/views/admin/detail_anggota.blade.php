@@ -36,7 +36,17 @@
                       <td>NIM</td>
                       <td>:</td>
                       <td> {{$row->nim}} </td>
-                    </tr>
+                  </tr>
+                  <tr>
+                    <td>No HP</td>
+                    <td>:</td>
+                    <td> {{$row->no_hp}} </td>
+                  </tr>
+                  <tr>
+                    <td>Media Sosial</td>
+                    <td>:</td>
+                    <td> {{$row->sosmed}} </td>
+                  </tr>
                   <tr>
                       <td>Jenis Kelamin</td>
                       <td>:</td>
