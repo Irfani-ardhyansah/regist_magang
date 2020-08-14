@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         $user = User::create([
             'email' => 'admin@kreasikode.com',
-            'password' => Hash::make('secret')
+            'password' => Hash::make('password')
         ]);
         $user->syncRoles('admin');
     }
