@@ -32,14 +32,14 @@ Route::group(['prefix' => 'admin'], function() {
 
 //User Route
 Route::get('/', 'UserController@index');
-Route::get('/download', 'UserController@soal')->middleware('role:user');
-Route::get('/home', 'UserController@home')->middleware('role:user');
+Route::get('/download', 'UserController@soal')->middleware('role:user')->name('download');
+Route::get('/home', 'UserController@home')->middleware('role:user')->name('home');
 Route::post('/add_anggota', 'UserController@store_data_anggota')->middleware('role:user');
 Route::match(['get', 'post'], '/home/edit/{id}', 'UserController@data_kelompok_update')->middleware('role:user');
 Route::match(['get', 'post'], '/home/update/{id}', 'UserController@kelompok_update')->middleware('role:user');
 Route::delete('/home/delete/{id}', 'UserController@delete')->middleware('role:user');
 Route::get('/detail/{id}', 'UserController@detail')->middleware('role:user');
-Route::get('/upload', 'UserController@upload')->middleware('role:user');
+Route::get('/upload', 'UserController@upload')->middleware('role:user')->name('upload');
 Route::post('/upload_file', 'UserController@upload_file')->name('upload_jawaban')->middleware('role:user');
 Auth::routes();
 

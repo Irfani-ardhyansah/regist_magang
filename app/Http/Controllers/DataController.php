@@ -53,6 +53,8 @@ class DataController extends Controller
             $data_kelompok->update(['status'=>$data['status']]);
 
             // Data_kelompok::where(['id'=>$id])->update(['status'=>$data['status']]);
+
+            //Mengirim Notifikasi Pada Email Anggota Kelompok
             if($data['status'] == 1) {
                 Mail::send('mails.diterima', ['email' => $email], function($m) use($email){
                     $m->subject('Pemberitahuan Dari KreasiKode');

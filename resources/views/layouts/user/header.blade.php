@@ -11,17 +11,17 @@
       <ul class="navbar-nav">
         @role('user')
         <li class="nav-item active">
-          <a class="nav-link" href="/home"> Data <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{{route('home')}}"> Data <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/download"> Download </a>
+          <a class="nav-link active" href="{{route('download')}}"> Download </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/upload"> Upload </a>
+          <a class="nav-link" href="{{route('upload')}}"> Upload </a>
         </li>
         <li class="nav-item logout">
           {{-- <a class="nav-link" href="/" tabindex="-1" aria-disabled="true"> Log-out </a> --}}
-          <a href="{{ route('logout') }}"
+          <a href="{{ route('logout') }}" 
               onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();" class="nav-link">
               <p>Log-out</p>
