@@ -61,19 +61,90 @@ class DataController extends Controller
                 'message'   =>  'unauthorized access'
             ]);
         }
-        $data->universitas = $request->universitas;
-        $data->fakultas = $request->fakultas;
-        $data->prodi = $request->prodi;
-        $data->alamat_univ = $request->alamat_univ;
-        $data->kelompok = $request->kelompok;
-        $data->jumlah_anggota = $request->jumlah_anggota;
-        $data->periode_mulai = $request->periode_mulai;
-        $data->periode_akhir = $request->periode_akhir;
-        $data->nama_ketua = $request->nama_ketua;
-        $data->update();
-        return response()->json([
-            'success' => true,
-            'message' => 'post edited'
-        ]);
+
+        try {
+            $data->universitas = $request->universitas;
+            $data->fakultas = $request->fakultas;
+            $data->prodi = $request->prodi;
+            $data->alamat_univ = $request->alamat_univ;
+            $data->kelompok = $request->kelompok;
+            $data->jumlah_anggota = $request->jumlah_anggota;
+            $data->periode_mulai = $request->periode_mulai;
+            $data->periode_akhir = $request->periode_akhir;
+            $data->nama_ketua = $request->nama_ketua;
+            $data->update();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Kelompok Edited'
+            ], 200);
+        } catch(\Exception $e) {
+            return response()->json([
+                'success'   =>  false,
+                'message'   =>  'Somethin Wrong'
+            ], 500);
+        }
+
     }
+
+    public function delete(Request $request)
+    {
+        $kelompok = Kelompok::where('user_id', Auth::user()->id)->first();
+        $data = Kelompok::findOrFail($request->id);
+
+        if($kelompok->user_id != $data->user_id ) {
+            return response()->json([
+                'success'  => false,
+                'message'   =>  'unauthorized access'
+            ]);
+        }
+
+        try {
+            $data->delete();
+            return response()->json([
+                'success'   =>  true,
+                'message'   =>  'Kelompok Deleted'
+            ], 200);
+        } catch(\Exception $e) {
+            return response()->json([
+                'success'   =>  false,
+                'message'   =>  'Something Wrong'
+            ], 500);
+        }
+    }
+
+    public function update_anggota_kelompok(Request $request)
+    {
+        $kelompok = Kelompok::where('user_id', Auth::user()->id)->first();
+        $data = Data_kelompok::findOrFail($request->id);
+
+        if($kelompok->id != $data->kelompok_id) {
+            return response()->json([
+                'success'   =>  false,
+                'message'   =>  'unauthorized access'
+            ]);
+        }
+
+        try{
+            $data->nama = $request->nama;
+            $data->nim = $request->nim;
+            $data->no_hp = $request->no_hp;
+            $data->sosmed = $request->sosmed;
+            $data->jenis_kelamin = $request->jenis_kelamin;
+            $data->email_anggota = $request->email_anggota;
+            $data->alamat = $request->alamat;
+            $data->bidang_minat = $request->bidang_minat;
+            $data->keahlian = $request->keahlian;
+
+            return response()->json([
+                'success'   =>  true,
+                'message'   =>  'Data Anggota Edited'
+            ], 200);
+        } catch(\Exception $e) {
+            return response()->json([
+                'success'   => true,
+                'message'   =>  'Something wrong'
+            ], 500); 
+        }
+    }   
 }

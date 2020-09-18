@@ -32,7 +32,8 @@ class AuthController extends Controller
             'success' => true,
             'token' => $token,
             'user' => Auth::user(),
-            'kelompok' => Kelompok::where('user_id', Auth::user()->id)->get()
+            'kelompok' => $kelompok = Kelompok::where('user_id', Auth::user()->id)->first(),
+            'data_anggota' => Data_kelompok::where('kelompok_id', $kelompok->id)->get()
         ], 200);
     }
 
