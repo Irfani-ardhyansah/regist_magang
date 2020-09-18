@@ -24,9 +24,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login','Api\AuthController@login');
 Route::post('register','Api\AuthController@register');
+Route::post('registerAnggota', 'Api\AuthController@RegisterAnggota');
 Route::get('logout', 'Api\AuthController@logout');
 
 Route::post('file', 'Api\UploadController@upload');
+Route::get('soal', 'Api\UploadController@index');
 
 Route::get('data','Api\DataController@kelompok');
 Route::get('data_anggota', 'Api\DataController@data_anggota');
+Route::post('data/update', 'Api\DataController@update_kelompok');

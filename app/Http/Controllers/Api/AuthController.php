@@ -38,7 +38,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-
+        
         try{
             $user = User::create([
                 'email' => $request['email'],
@@ -61,26 +61,6 @@ class AuthController extends Controller
                 $kelompok = Kelompok::create($data2);
             }
 
-            // if(!empty($request['nama'])) {
-            //     foreach ($request['nama'] as $item => $value) {
-            //         $bidang = implode(",", $request['bidang_minat'][$item]);
-            //         $data3 = array(
-            //             'kelompok_id' => $kelompok->id,
-            //             'nama' => $request['nama'][$item],
-            //             'nim' => $request['nim'][$item],
-            //             'jenis_kelamin' => $request['jenis_kelamin'][$item],
-            //             'no_hp' => $request['no_hp'][$item],
-            //             'status' => 0,
-            //             'sosmed' => $request['sosmed'][$item],
-            //             'email_anggota' => $request['email_anggota'][$item],
-            //             'alamat' => $request['alamat'][$item],
-            //             'bidang_minat' => $bidang,
-            //             'keahlian' => $request['keahlian'][$item],
-            //         );
-            //         Data_kelompok::create($data3);
-            //     }
-            // }
-            // $user->save();
             return response()->json([
                 'success' => true,
                 'user' => $user,
@@ -91,6 +71,42 @@ class AuthController extends Controller
                 'success' => false,
                 'message'  => ''.$e
             ], 500);
+        }
+    }
+
+    public function RegisterAnggota(Request $request)
+    {
+        $data = Kelompok::where('user_id', auth()->user()->id)->get();
+        //memecah array
+        foreach($data as $row)
+        //mengambil id pada Kelompok
+        $kelompok_id = $row->id;
+        try{
+            // $bidang = implode(",", $request['bidang_minat']);
+            $data_anggota = array(
+                'kelompok_id' => $kelompok_id,
+                'nama' => $request['nama'],
+                'nim' => $request['nim'],
+                'jenis_kelamin' => $request['jenis_kelamin'],
+                'no_hp' => $request['no_hp'],
+                'status' => 0,
+                'sosmed' => $request['sosmed'],
+                'email_anggota' => $request['email_anggota'],
+                'alamat' => $request['alamat'],
+                // 'bidang_minat' => $bidang,
+                'keahlian' => $request['keahlian'],
+            );
+            $data = Data_kelompok::create($data_anggota);
+
+            return response()->json([
+                'success' => true,
+                'data' => $data
+            ], 200);
+        } catch(Exception $e){
+            return response()->json([
+                'success' => false,
+                'message'  => ''.$e
+            ], 403);
         }
     }
 
@@ -108,5 +124,6 @@ class AuthController extends Controller
                 'message'   =>  ''.$e
             ], 500);
         }
+        
     }
 }

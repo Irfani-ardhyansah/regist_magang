@@ -15,6 +15,15 @@ class UploadController extends Controller
         $this->middleware(['auth:api', 'jwtAuth'], ['except' => ['login','register']]);
     }
 
+    public function index(Request $request)
+    {
+        $soal = Soal::where('keterangan', 0)->get();
+        return response()->json([
+            'success' => true,
+            'soal' => $soal
+        ]);
+    }
+
     public function upload(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -38,7 +47,7 @@ class UploadController extends Controller
             $nama_file = $request->name_file;
             $extension  = $file->getClientOriginalExtension();
             $fileName = $nama_file.'.'.$extension;
-            $request->file('item')->move('data_soal/', $fileName);
+            $request->file('item')->move('data_jawaban/', $fileName);
             $post->item = $fileName;
         }
 
