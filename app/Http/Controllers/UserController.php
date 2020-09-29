@@ -25,14 +25,15 @@ class UserController extends Controller
     public function home()
     {
         $data = Kelompok::where('user_id', auth()->user()->id)->get();
+        $jumlah_anggota = Kelompok::where('user_id', auth()->user()->id)->value('jumlah_anggota');
         //memecah array
         foreach($data as $row)
         //mengambil id pada Kelompok
         $data_id = $row->id;
         $data_kelompok = Data_kelompok::where('kelompok_id', $data_id)->get();
         $total = $data_kelompok->count();
-        // dd($total);
-        return view('user.home', compact('data', 'data_kelompok', 'total')); 
+        // dd($jumlah_anggota);
+        return view('user.home', compact('data', 'data_kelompok', 'total', 'jumlah_anggota')); 
     }
 
     public function data_kelompok_update(Request $request, $id)

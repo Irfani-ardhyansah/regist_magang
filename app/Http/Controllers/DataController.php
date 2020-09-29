@@ -25,11 +25,16 @@ class DataController extends Controller
         //mencari jawaban yang diupload user
         $jawaban = Soal::where('user_id',$user_id)->first();
         //Menghapus file jawaban pada server
-        File::delete('data_jawaban/'.$jawaban->item);
-        $jawaban->delete();
+        if($jawaban) {
+            File::delete('data_jawaban/'.$jawaban->item);
+            $jawaban->delete();
 
-        $data = Kelompok::findOrFail($id);
-        $data -> delete();
+            $data = Kelompok::findOrFail($id);
+            $data -> delete();
+        } else {
+            $data = Kelompok::findOrFail($id);
+            $data -> delete();
+        }
         return back()->with(['success' => 'Berhasil Dihapus']);
     }
 

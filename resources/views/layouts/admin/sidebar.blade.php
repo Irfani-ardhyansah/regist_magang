@@ -5,10 +5,9 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          {{-- <img src="{{ asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image"> --}}
+          <img src="{{ asset('Logo-icon.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          {{-- <a href="#" class="d-block">Admin</a> --}}
           <h3 class="ml-3 mt-2" style = "font-family:verdana;"> <span style="color: #FF8C00; " >kreasi</span><span style="color: #4169E1;">kode</span>
         </div>
       </div>
@@ -23,7 +22,6 @@
                 Data Magang
               </p>
             </a>
-            
           </li>
           <li class="nav-item">
             <a href="{{ route('data_upload')}}" class="nav-link {{set_active('data_upload')}}">

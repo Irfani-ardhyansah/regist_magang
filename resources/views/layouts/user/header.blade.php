@@ -1,14 +1,16 @@
-
-<nav class="navbar navbar-expand-lg fixed-top navbar-trans">
-    <h1 class="ml-2" style = "font-family:verdana;"> <span style="color: #FF8C00;">kreasi</span><span style="color: #2352AA;">kode</span> <br>
-      {{-- <img src="Logo.jpg" style="width:300px;height:300px; margin-left:3%; margin-top:1%;"> --}}
-      {{-- <span style="font-size: 0.6em; letter-spacing: 9px;">indonesia</span> --}}
+<nav class="navbar navbar-expand-lg fixed-top navbar-trans" style="max-width:100%;">
+    <h1 class="ml-2" style = "font-family:verdana;"> 
+      <a href="{{url('/')}}"> 
+        <span style="color: #FF8C00;">kreasi</span><span style="color: #2352AA;">kode</span> <br>
+      </a>
     </h1>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon">
+        <i class="nav-icon fa fa-bars" aria-hidden="true" style="color: #2352AA;"></i>
+      </span>
     </button>
     <div class="collapse navbar-collapse" style="margin-left: 55%;" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav float-right">
         @role('user')
         <li class="nav-item active">
           <a class="nav-link" href="{{route('home')}}"> Data <span class="sr-only">(current)</span></a>
@@ -17,7 +19,7 @@
           <a class="nav-link active" href="{{route('download')}}"> Download </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('upload')}}"> Upload </a>
+          <a class="nav-link" href="{{route('upload_user')}}"> Upload </a>
         </li>
         <li class="nav-item logout">
           {{-- <a class="nav-link" href="/" tabindex="-1" aria-disabled="true"> Log-out </a> --}}

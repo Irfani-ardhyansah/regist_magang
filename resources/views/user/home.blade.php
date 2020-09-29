@@ -96,7 +96,7 @@
       <table class="table table-bordered">
         <thead class="thead-light">
 
-          @if($total < 5)
+          @if($total <= $jumlah_anggota)
             <button class="btn btn-info btn-sm btn-flat pull-right mb-2" data-toggle="modal" data-target="#tambahModal">Tambah Anggota</button>
           @endif
 

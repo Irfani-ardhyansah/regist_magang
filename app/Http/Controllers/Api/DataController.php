@@ -53,32 +53,34 @@ class DataController extends Controller
     public function update_kelompok(Request $request)
     {
         $kelompok = Kelompok::where('user_id', Auth::user()->id)->first();
-        $data = Kelompok::findOrFail($request->id);
+        // $data = Data_kelompok::findOrFail($request->id)->first();
 
-        if($kelompok->user_id != $data->user_id ) {
+        if($kelompok->user_id != Auth::user()->id) {
             return response()->json([
-                'success'  => false,
+                'success'   =>  false,
                 'message'   =>  'unauthorized access'
             ]);
         }
 
         try {
-            $data->universitas = $request->universitas;
-            $data->fakultas = $request->fakultas;
-            $data->prodi = $request->prodi;
-            $data->alamat_univ = $request->alamat_univ;
-            $data->kelompok = $request->kelompok;
-            $data->jumlah_anggota = $request->jumlah_anggota;
-            $data->periode_mulai = $request->periode_mulai;
-            $data->periode_akhir = $request->periode_akhir;
-            $data->nama_ketua = $request->nama_ketua;
-            $data->update();
+            $kelompok->universitas = $request->universitas;
+            $kelompok->fakultas = $request->fakultas;
+            $kelompok->prodi = $request->prodi;
+            $kelompok->alamat_univ = $request->alamat_univ;
+            $kelompok->jumlah_anggota = $request->jumlah_anggota;
+            $kelompok->kelompok = $request->kelompok;
+            $kelompok->periode_mulai = $request->periode_mulai;
+            $kelompok->periode_akhir = $request->periode_akhir;
+            $kelompok->nama_ketua = $request->nama_ketua;
+            $kelompok->update();
 
             return response()->json([
                 'success' => true,
+                'data' => $kelompok,
                 'message' => 'Kelompok Edited'
             ], 200);
         } catch(\Exception $e) {
+
             return response()->json([
                 'success'   =>  false,
                 'message'   =>  'Somethin Wrong'
@@ -135,6 +137,7 @@ class DataController extends Controller
             $data->alamat = $request->alamat;
             $data->bidang_minat = $request->bidang_minat;
             $data->keahlian = $request->keahlian;
+            $data->update();
 
             return response()->json([
                 'success'   =>  true,

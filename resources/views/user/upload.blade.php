@@ -27,13 +27,13 @@
               <div class="card-body">
                     <form action="{{route('upload_jawaban')}}" method="POST" enctype="multipart/form-data">
                       @csrf
-                      <div class="form-group col-xs-6">
+                      <div class="form-group col-lg-6 col-xs-6">
                         <label for="">File </label>
                           <input type="file" name="item" class="form-control-file">
                       </div>
-                      <div class="col-xs-6">
+                      <div class="form-group col-lg-6 col-xs-6">
                         <label for="">Nama File </label>
-                        <input type="text" class="form-control col-sm-5" name="name_file" required>
+                        <input type="text" class="form-control" name="name_file" required>
                         <small>*File bertipe ZIP/RAR</small>              
                       </div>
                       <button type="submit" class="btn btn-primary btn-sm"  style="width: 200px; margin-top: 2%;margin-left: 30%;margin-bottom: 10%;">Upload</button>

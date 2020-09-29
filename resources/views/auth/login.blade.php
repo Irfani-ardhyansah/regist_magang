@@ -90,7 +90,7 @@
                 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <div class="col-lg-10 col-md-8 col-sm-6 col-xs-4">
+                <div class="col-lg-10 col-md-8 col-sm-10 col-xs-12">
                     <div class="form-group">
                         <label> <h5>Email</h5></label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="Masukkan Email">
@@ -101,18 +101,14 @@
                             @enderror
                     </div>
                 </div>
-                <div class="col-lg-10 col-md-6 col-sm-6 col-xs-3">
+                <div class="col-lg-10 col-md-8 col-sm-10 col-xs-12">
                     <div class="form-group">
                         <label> <h5>Password</h5> </label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Masukkan Password">
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <input type="password" class="form-control {{$errors->has('password') ? is-invalid:'' }}" name="password" required placeholder="Masukkan Password">
+                            <p class="text-danger">{{ $errors->first('password') }}</p>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 200px; margin-top: 5%;margin-left: 49%;">Submit</button>
+                <button type="submit" class="btn btn-primary" style="width: 150px; margin-top: 5%; margin-left: 29%;">Submit</button>
             </form>
             
             </div>
