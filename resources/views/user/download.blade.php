@@ -8,7 +8,7 @@
         <div class="row" style="margin-left: 10%;">
             <div class="col-sm-11 table">
                 <h1 class="text-center mb-5">Tabel Soal</h1>
-                <table class="table">
+                <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
                     <th scope="col">No</th>

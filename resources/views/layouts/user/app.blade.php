@@ -20,8 +20,8 @@
 
   @yield('content')
 
-<footer class="container-fluid text-center" id="footer" style="position: absolute; height: auto; width:fixed; @media(height: auto)">
-  <div class="row">
+<footer class="container-fluid text-center" id="footer" style="position: absolute; height: 420px; @media(max-height: auto; max-width: 332px)">
+  <div class="row" style="height:auto;">
     <div class="col-lg-4 col-xs-12 mt-5">
       <h3>Address</h3>
       <br>
@@ -39,7 +39,48 @@
       <a href="#" class="fa fa-youtube-play"></a>
     </div>
   </div>
+  <div class="row mt-4" style="height:auto;">
+    <div class="col copyright text-center">
+      <p><small class="text-white-50">
+        All Rights Reserved &copy; Team Magang Politeknik Negeri Madiun 2020
+      </small></p>
+    </div>
+  </div>
 </footer>
+
+{{-- <footer>
+  <div class="mt-5 pt-5 pb-5 footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-xs-12">
+          <h2>Social</h2>
+          <ul class="social">
+            <li><a href="#"><i class="fa fa-faceboook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-xs-12"></div>
+
+        <div class="col-lg-4 col-xs-12 location">
+          <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+          <p><i class="fa fa-map-marker">Jl. Garuda No.78A, Manukan, Condong Catur, Sleman, Kec. Depok, Kabupaten Sleman, DIY 55283</i></p>
+          <p><i class="fa fa-phone">+62 - </i></p>
+          <p><i class="fa fa-envelope-o">email@kreasikode.com</i></p>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col copyright text-center">
+          <p><small class="text-white-50">
+            All Rights Reservec &copy; Team Maganng Politeknik Negeri Madiun 2020
+          </small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> --}}
 
 <script type="text/javascript"> 
   $('.addanggota').on('click', function(){

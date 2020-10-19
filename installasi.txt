@@ -1,0 +1,7 @@
+Langkah2 installasi
+
+1. php artisan migrate
+2. php artisan permission:create-role admin
+3. php artisan permission:create-role user
+4. composer dump-autoload
+5. php artisan db:seed

@@ -80,13 +80,6 @@
     <div class="landing-text">
         <div class="card-trasnparent" style="margin-left: 30%; margin-bottom:10%; height: 20%; width: 50%;">
             <div class="card-body">
-
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        {!! session('success') !!}
-                    </div>
-                @endif
                 
             <form method="POST" action="{{ route('login') }}">
                 @csrf

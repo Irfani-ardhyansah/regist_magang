@@ -76,47 +76,52 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
-        ]);
-
-        if(!empty($data['nama_ketua'])) {
-                $data2 = array(
-                    'user_id' => $user->id,
-                    'universitas' => $data['universitas'],
-                    'fakultas' => $data['fakultas'],
-                    'prodi' => $data['prodi'],
-                    'alamat_univ' => $data['alamat_univ'],
-                    'kelompok' => $data['kelompok'],
-                    'jumlah_anggota' => $data['jumlah_anggota'],
-                    'periode_mulai' => $data['periode_mulai'],
-                    'periode_akhir' => $data['periode_akhir'],
-                    'nama_ketua' => $data['nama_ketua']
-                );
-                $kelompok = Kelompok::create($data2);
-        }
-
-        if(!empty($data['nama'])) {
-            foreach ($data['nama'] as $item => $value) {
-                $bidang = implode(",", $data['bidang_minat'][$item]);
-                $data3 = array(
-                    'kelompok_id' => $kelompok->id,
-                    'nama' => $data['nama'][$item],
-                    'nim' => $data['nim'][$item],
-                    'jenis_kelamin' => $data['jenis_kelamin'][$item],
-                    'no_hp' => $data['no_hp'][$item],
-                    'status' => 0,
-                    'sosmed' => $data['sosmed'][$item],
-                    'email_anggota' => $data['email_anggota'][$item],
-                    'alamat' => $data['alamat'][$item],
-                    'bidang_minat' => $bidang,
-                    'keahlian' => $data['keahlian'][$item],
-                );
-                Data_kelompok::create($data3);
+        try {
+            $user = User::create([
+                'email' => $data['email'],
+                'password' => Hash::make($data['password'])
+            ]);
+    
+            if(!empty($data['nama_ketua'])) {
+                    $data2 = array(
+                        'user_id' => $user->id,
+                        'universitas' => $data['universitas'],
+                        'fakultas' => $data['fakultas'],
+                        'prodi' => $data['prodi'],
+                        'alamat_univ' => $data['alamat_univ'],
+                        'kelompok' => $data['kelompok'],
+                        'jumlah_anggota' => $data['jumlah_anggota'],
+                        'periode_mulai' => $data['periode_mulai'],
+                        'periode_akhir' => $data['periode_akhir'],
+                        'nama_ketua' => $data['nama_ketua']
+                    );
+                    $kelompok = Kelompok::create($data2);
             }
+    
+            if(!empty($data['nama'])) {
+                foreach ($data['nama'] as $item => $value) {
+                    $bidang = implode(",", $data['bidang_minat'][$item]);
+                    $data3 = array(
+                        'kelompok_id' => $kelompok->id,
+                        'nama' => $data['nama'][$item],
+                        'nim' => $data['nim'][$item],
+                        'jenis_kelamin' => $data['jenis_kelamin'][$item],
+                        'no_hp' => $data['no_hp'][$item],
+                        'status' => 0,
+                        'sosmed' => $data['sosmed'][$item],
+                        'email_anggota' => $data['email_anggota'][$item],
+                        'alamat' => $data['alamat'][$item],
+                        'bidang_minat' => $bidang,
+                        'keahlian' => $data['keahlian'][$item],
+                    );
+                    Data_kelompok::create($data3);
+                }
+            }
+            return $user->with('success', 'Data Berhasil Diinput!');
+        } catch(\Exception $e) {
+            return redirect()->back()->with(['errors' => 'Something Wrong']);
         }
-        return $user->with('success', 'Data Berhasil Diinput!');
+        
     }
 
     public function register(Request $request)
@@ -128,6 +133,6 @@ class RegisterController extends Controller
         // $this->guard()->login($user);
 
         return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+            ?: redirect($this->redirectPath())->with('success', 'Berhasil Mendaftarkan Akun');
     }
 }

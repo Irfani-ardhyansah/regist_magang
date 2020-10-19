@@ -4,6 +4,7 @@
 <link href="{{ asset('user/css/styleRegist.css')}}" rel="stylesheet" />
 <div id="home" class="container" style="position: relative; height: auto;">
     <div class="landing-text" style="height:auto;">
+
         <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="card" style=" margin-top:7%; width: 50rem; height: auto; position: relative; border:none;">
