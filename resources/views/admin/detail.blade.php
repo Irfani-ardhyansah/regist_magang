@@ -125,7 +125,8 @@
                     <form action="{{ url('/admin/detail/delete/' . $rows -> id) }}" method="POST">
                       @csrf
                       <input type="hidden" name="_method" value="DELETE" class="form-control">
-                      <a href="{{ url('/admin/detail_anggota/'. $rows->id)}}" class="btn btn-primary btn-xs">Detail</a> <span class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal-status-{{ $rows->id }}">Ubah Status</span> <button class="btn btn-danger btn-xs" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button>
+                      <a href="{{ url('/admin/detail_anggota/'. $rows->id)}}" class="btn btn-primary btn-xs">Detail</a> <span class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal-status-{{ $rows->id }}">Ubah Status</span> 
+                      {{-- <button class="btn btn-danger btn-xs" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</button> --}}
                     </form>
                   </td>
               </tr>
