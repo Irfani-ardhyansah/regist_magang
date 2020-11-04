@@ -62,22 +62,22 @@ class DataController extends Controller
             //Mengirim Notifikasi Pada Email Anggota Kelompok
             if($data['status'] == 1) {
                 Mail::send('mails.diterima', ['email' => $email], function($m) use($email){
-                    $m->subject('Pemberitahuan Dari KreasiKode');
-                    $m->from('no-reply@kreasikode.com', 'HRD');
+                    $m->subject('Pemberitahuan Dari PT. Kreasi Kode Indonesia');
+                    $m->from('no-reply@kreasikode.com', 'PT. Kreasi Kode Indonesia');
                     $m->to($email);
                 });
                 return redirect()->back()->with('success', 'Berhasil Mengubah Status Diterima');
             } else if ($data['status'] == 2) {
                 Mail::send('mails.ditolak', ['email' => $email], function($m) use($email){
-                    $m->subject('Pemberitahuan Dari KreasiKode');
-                    $m->from('no-reply@kreasikode.com', 'HRD');
+                    $m->subject('Pemberitahuan Dari PT. Kreasi Kode Indonesia');
+                    $m->from('no-reply@kreasikode.com', 'PT. Kreasi Kode Indonesia');
                     $m->to($email);
                 });
                 return redirect()->back()->with('success', 'Berhasil Mengubah Status Ditolak');
             } else if ($data['status'] == 3) {
                 Mail::send('mails.selesai', ['email' => $email], function($m) use($email){
-                    $m->subject('Pemberitahuan Dari KreasiKode');
-                    $m->from('no-reply@kreasikode.com', 'HRD');
+                    $m->subject('Pemberitahuan Dari PT. Kreasi Kode Indonesia');
+                    $m->from('no-reply@kreasikode.com', 'PT. Kreasi Kode Indonesia');
                     $m->to($email);
                 });
                 return redirect()->back()->with('success', 'Berhasil Mengubah Status Selesai');
