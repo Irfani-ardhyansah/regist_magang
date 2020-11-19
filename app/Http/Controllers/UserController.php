@@ -59,7 +59,7 @@ class UserController extends Controller
                 $kelompok_id = $kelompok->id;
             }
             
-            $bidang = implode(",", $request['bidang_minat']);
+            // $bidang = implode(",", $request['bidang_minat']);
             $data = ([
                 'kelompok_id' => $kelompok_id,
                 'nama' => $request['nama'],
@@ -70,7 +70,7 @@ class UserController extends Controller
                 'sosmed' => $request['sosmed'],
                 'email_anggota' => $request['email_anggota'],
                 'alamat' => $request['alamat'],
-                'bidang_minat' => $bidang,
+                'bidang_minat' => $request['bidang_minat'],
                 'keahlian' => $request['keahlian']
             ]);
             Data_kelompok::create($data);
