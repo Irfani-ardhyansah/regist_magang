@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jul 2020 pada 09.37
+-- Waktu pembuatan: 07 Sep 2021 pada 15.06
 -- Versi server: 10.1.35-MariaDB
--- Versi PHP: 7.2.9
+-- Versi PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -50,10 +49,8 @@ CREATE TABLE `data_kelompoks` (
 --
 
 INSERT INTO `data_kelompoks` (`id`, `kelompok_id`, `nama`, `nim`, `no_hp`, `sosmed`, `jenis_kelamin`, `email_anggota`, `alamat`, `bidang_minat`, `keahlian`, `status`, `created_at`, `updated_at`) VALUES
-(7, 6, 'Ayu Risqi', 123, '089739892738', 'ayu.risqi', 'Perempuan', 'ayurisqi@gmail.com', 'Madiun', 'Web Programing,UI / UX', 'UI/UX', 1, NULL, '2020-07-15 21:49:45'),
-(9, 8, 'satu', 1, '01', 'satu.satoe', 'Laki-laki', 'satu@pertama.com', 'Madiun', 'Android Developer,Frontend,Database', 'UI / UX', 0, '2020-06-30 01:49:36', '2020-07-07 00:30:12'),
-(10, 8, 'dua', 2, '02', 'due.doea', 'Perempuan', 'doe@dua.com', 'madiun', 'Android Developer,Web Programing,Database', 'Web Programing', 0, '2020-06-30 01:49:36', '2020-07-14 19:28:31'),
-(13, 11, 'satoe', 21, '031', '@satu', 'Laki-laki', 'satu@gmail.com', 'Madiun', 'Android Developer,Web Programing', 'UI / UX', 2, '2020-07-16 00:21:49', '2020-07-16 00:25:37');
+(1, 1, 'ketua kelompok', 1, '09218', '@ketua', 'Perempuan', 'ayurisqi73@gmail.com', 'Madiun', 'UI / UX,Web Programing', 'Web Programing', 1, '2020-08-13 20:06:32', '2020-08-14 01:25:20'),
+(3, 1, 'Mochamad Irfani Ardhyansah', 1234, '5123', '@safbl', 'Laki-laki', 'mohamadfani99@gmail.com', 'madoun', 'Frontend,Database,UI / UX', 'UI / UX', 1, '2020-08-13 21:53:00', '2020-08-30 23:54:51');
 
 -- --------------------------------------------------------
 
@@ -97,9 +94,7 @@ CREATE TABLE `kelompoks` (
 --
 
 INSERT INTO `kelompoks` (`id`, `user_id`, `universitas`, `fakultas`, `prodi`, `alamat_univ`, `kelompok`, `jumlah_anggota`, `periode_mulai`, `periode_akhir`, `nama_ketua`, `created_at`, `updated_at`) VALUES
-(6, 8, 'Unmer', 'Teknik', 'TI', 'Madiun', 'Kelompok 1', 4, '2020-06-02', '2020-06-30', 'John', '2020-06-17 19:35:12', '2020-07-01 23:50:39'),
-(8, 15, 'Unmer', 'Teknik', 'TI', 'Madiun', 'Kelompok 1', 4, '2020-06-01', '2020-07-01', 'ketua', '2020-06-30 01:49:36', '2020-07-02 23:45:02'),
-(11, 25, 'UGM', 'Teknink', 'Kecantikan', 'Jl Ngegbehan', 'Kelompok 2', 2, '2020-07-16', '2020-07-31', 'kocheng', '2020-07-16 00:21:49', '2020-07-16 00:21:49');
+(1, 24, 'UNS', 'Teknik', 'Informasi Nuklir', 'Jl Sriwijaya, condongcatur, sleman, DIY.', 'Kelompok 1', 4, '2020-08-01', '2020-08-30', 'Noven', '2020-08-13 20:06:32', '2020-09-17 23:29:01');
 
 -- --------------------------------------------------------
 
@@ -159,7 +154,15 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (2, 'App\\User', 8),
 (2, 'App\\User', 15),
 (2, 'App\\User', 17),
-(2, 'App\\User', 25);
+(2, 'App\\User', 22),
+(2, 'App\\User', 23),
+(2, 'App\\User', 24),
+(2, 'App\\User', 25),
+(2, 'App\\User', 26),
+(2, 'App\\User', 27),
+(2, 'App\\User', 28),
+(2, 'App\\User', 30),
+(2, 'App\\User', 34);
 
 -- --------------------------------------------------------
 
@@ -240,10 +243,7 @@ CREATE TABLE `soals` (
 --
 
 INSERT INTO `soals` (`id`, `user_id`, `item`, `keterangan`, `created_at`, `updated_at`) VALUES
-(11, 8, 'Backend.zip', 1, '2020-06-22 00:57:36', '2020-06-22 00:57:36'),
-(42, 17, 'Jawaban.zip', 1, '2020-07-12 22:56:25', '2020-07-12 22:56:25'),
-(43, 17, 'sad.zip', 1, '2020-07-12 22:59:00', '2020-07-12 22:59:00'),
-(44, 25, 'Cob.zip', 1, '2020-07-16 00:22:55', '2020-07-16 00:22:55');
+(1, 1, 'Android.pdf', 0, '2020-10-06 22:50:22', '2020-10-06 22:50:22');
 
 -- --------------------------------------------------------
 
@@ -253,7 +253,6 @@ INSERT INTO `soals` (`id`, `user_id`, `item`, `keterangan`, `created_at`, `updat
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -266,13 +265,9 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@kreasikode.com', NULL, '$2y$10$CTE5D5oAZGgKCT9JIJMf5uBTCap2w3GjR4MIexHLGge.COcps2Jly', NULL, '2020-06-16 22:23:52', '2020-06-16 22:23:52'),
-(8, NULL, 'user@kreasikode.com', NULL, '$2y$10$ktcfKw5YYmTQtiJ5AvMS7Owl7bhnjpHerpK4C0sic7XWZjTx8yIhG', NULL, '2020-06-17 19:35:12', '2020-06-17 19:35:12'),
-(15, NULL, 'ketua@kreasikode.com', NULL, '$2y$10$XquzpQp.w.Io70SyBWtYk.ngL9UknTnUjN3806AfRxCk3wk9YCj92', NULL, '2020-06-30 01:49:36', '2020-06-30 01:49:36'),
-(17, NULL, 'guru@gmail.com', NULL, '$2y$10$hkpfbyswx2Jouc1GCmB37.Sks58PLbDGdjfNUVk/dp9aDjrVJh43y', NULL, '2020-07-12 21:41:03', '2020-07-12 21:41:03'),
-(22, NULL, 'api@kreasikode.com', NULL, '$2y$10$J/gINhfkyq0ALUphGTZdTepx2gYRao/lr1phcptpytwMMwv/3P9JS', NULL, '2020-07-15 20:52:57', '2020-07-15 20:52:57'),
-(25, NULL, 'kocheng@gmail.com', NULL, '$2y$10$9RWj66PJ.y.21lyBl4idNeUylnAZC6gXbPXGqiMcffSZpdJzl.HB2', NULL, '2020-07-16 00:21:49', '2020-07-16 00:21:49');
+INSERT INTO `users` (`id`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin@kreasikode.com', NULL, '$2y$10$CTE5D5oAZGgKCT9JIJMf5uBTCap2w3GjR4MIexHLGge.COcps2Jly', NULL, '2020-06-16 22:23:52', '2020-06-16 22:23:52'),
+(24, 'ketua@kreasikode.com', NULL, '$2y$10$jtzoAPB6qyMqMwruRI16uOFpSKGfCuGCbKo41HPq4F42Kcr8QDCz2', NULL, '2020-08-13 20:06:32', '2020-08-13 20:06:32');
 
 --
 -- Indexes for dumped tables
@@ -367,7 +362,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `data_kelompoks`
 --
 ALTER TABLE `data_kelompoks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -379,7 +374,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `kelompoks`
 --
 ALTER TABLE `kelompoks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -403,13 +398,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT untuk tabel `soals`
 --
 ALTER TABLE `soals`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

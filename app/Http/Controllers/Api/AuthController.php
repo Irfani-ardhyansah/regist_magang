@@ -103,7 +103,7 @@ class AuthController extends Controller
                 'success' => true,
                 'data' => $data
             ], 200);
-        } catch(Exception $e){
+        } catch(\Exception $e){
             return response()->json([
                 'success' => false,
                 'message'  => ''.$e
@@ -119,7 +119,7 @@ class AuthController extends Controller
                 'success'   =>  true,
                 'message'   =>  'Logout Berhasil'
             ], 200);
-        } catch(Exception $e){
+        } catch(\Exception $e){
             return response()->json([
                 'success'   =>  false,
                 'message'   =>  ''.$e

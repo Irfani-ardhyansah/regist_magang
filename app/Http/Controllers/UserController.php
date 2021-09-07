@@ -32,7 +32,6 @@ class UserController extends Controller
         $data_id = $row->id;
         $data_kelompok = Data_kelompok::where('kelompok_id', $data_id)->get();
         $total = $data_kelompok->count();
-        // dd($jumlah_anggota);
         return view('user.home', compact('data', 'data_kelompok', 'total', 'jumlah_anggota')); 
     }
 
@@ -59,7 +58,7 @@ class UserController extends Controller
                 $kelompok_id = $kelompok->id;
             }
             
-            // $bidang = implode(",", $request['bidang_minat']);
+            $bidang = implode(",", $request['bidang_minat']);
             $data = ([
                 'kelompok_id' => $kelompok_id,
                 'nama' => $request['nama'],
@@ -70,12 +69,12 @@ class UserController extends Controller
                 'sosmed' => $request['sosmed'],
                 'email_anggota' => $request['email_anggota'],
                 'alamat' => $request['alamat'],
-                'bidang_minat' => $request['bidang_minat'],
+                'bidang_minat' => $bidang,
                 'keahlian' => $request['keahlian']
             ]);
             Data_kelompok::create($data);
             return redirect()->back()->with('success', 'Data Anggota Berhasil Diinput!');
-        } catch(Exception $e){
+        } catch(\Exception $e){
             return redirect()->back()->with('error', 'Data Anggota Tidak Berhasil Diinput');
         }
 
